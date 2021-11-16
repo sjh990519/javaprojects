@@ -262,12 +262,13 @@ public class Menu {
 
     // 영수증 빌지
     public void bill(int num, int count, int number) {
+        int apay = food[number][num].getFoodPrice() * count ;
         num = num - 1;
         System.out.println("----------------주문내역-----------------");
         System.out.println("카테고리 : " + food[number][num].getFoodCategory());
         System.out.println("음식명 : " + food[number][num].getFoodName());
         System.out.println("수량 : " + count);
-        System.out.println("가격 : " + food[number][num].getFoodPrice() * count + "원");
+        System.out.println("가격 : " + apay + "원");
 
         sum = sum + food[number][num].getFoodPrice() * count;//비용합산
         if (Food.OrderNumber >= 999) { // 주문번호가 999 이상일 경우 0으로 초기화 
