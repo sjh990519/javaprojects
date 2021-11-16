@@ -24,7 +24,7 @@ public class Food {
     }
 
    
-
+    int k = 1;
   
 
     public String getFoodCategory() { // 음식 카테코리 리턴
