@@ -169,7 +169,7 @@ public class Reservation extends javax.swing.JFrame {
             }
         });
 
-        jMenu3.setText("메뉴");
+        jMenu3.setText("Menu");
 
         jMenuItem1.setText("뒤로가기");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {

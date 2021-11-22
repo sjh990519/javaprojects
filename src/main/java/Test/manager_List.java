@@ -73,7 +73,7 @@ public class manager_List extends javax.swing.JFrame {
             }
         });
 
-        jMenu1.setText("메뉴");
+        jMenu1.setText("Menu");
 
         jMenuItem1.setText("뒤로가기");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
