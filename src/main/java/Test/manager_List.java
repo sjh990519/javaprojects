@@ -142,7 +142,11 @@ public class manager_List extends javax.swing.JFrame {
     
     // All_Room Management (객실 전체 관리)
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        
+        all_Room p = new all_Room();
+        p.setVisible(true);
+        setVisible(false);
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     

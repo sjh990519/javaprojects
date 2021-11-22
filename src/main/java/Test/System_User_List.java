@@ -153,13 +153,19 @@ public class System_User_List extends javax.swing.JFrame {
     
     // 메뉴 -> 뒤로가기
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
+        
+        manager_List p = new manager_List();
+        p.setVisible(true);
+        setVisible(false);
+        
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     
     // 메뉴 -> 종료
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
+        
+        System.exit(0);
+        
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
