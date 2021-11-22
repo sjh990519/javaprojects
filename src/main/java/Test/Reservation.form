@@ -131,11 +131,9 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jTextField2" max="32767" attributes="0"/>
-                              <Component id="jTextField3" max="32767" attributes="0"/>
-                              <Component id="jTextField1" alignment="0" min="-2" pref="56" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jTextField2" max="32767" attributes="0"/>
+                          <Component id="jTextField3" max="32767" attributes="0"/>
+                          <Component id="jTextField1" alignment="0" min="-2" pref="56" max="-2" attributes="0"/>
                           <Component id="jTextField4" pref="79" max="32767" attributes="0"/>
                           <Component id="jTextField5" alignment="0" max="32767" attributes="0"/>
                           <Component id="jTextField6" alignment="0" max="32767" attributes="0"/>
@@ -187,9 +185,9 @@
                   <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTextField6" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="38" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+              <EmptySpace pref="42" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -213,7 +211,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="&#xad74;&#xb9bc;" size="13" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="&#xbc29; &#xbc88;&#xd638;  : "/>
+        <Property name="text" type="java.lang.String" value="&#xac1d;&#xc2e4; &#xbc88;&#xd638;  : "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
@@ -229,7 +227,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="&#xad74;&#xb9bc;" size="13" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="&#xc778;&#xc6d0; &#xc218;  : "/>
+        <Property name="text" type="java.lang.String" value="&#xc804;&#xd654;&#xbc88;&#xd638;  : "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
@@ -237,7 +235,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="&#xad74;&#xb9bc;" size="13" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="&#xc804;&#xd654;&#xbc88;&#xd638;  : "/>
+        <Property name="text" type="java.lang.String" value="&#xc778;&#xc6d0; &#xc218;  : "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField1">

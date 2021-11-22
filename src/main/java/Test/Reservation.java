@@ -13,6 +13,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import Test.Reservation_List;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -101,16 +109,16 @@ public class Reservation extends javax.swing.JFrame {
         jLabel2.setText("( 손님 예약 )");
 
         jLabel3.setFont(new java.awt.Font("굴림", 0, 13)); // NOI18N
-        jLabel3.setText("방 번호  : ");
+        jLabel3.setText("객실 번호  : ");
 
         jLabel4.setFont(new java.awt.Font("굴림", 0, 13)); // NOI18N
         jLabel4.setText("고객 이름  : ");
 
         jLabel5.setFont(new java.awt.Font("굴림", 0, 13)); // NOI18N
-        jLabel5.setText("인원 수  : ");
+        jLabel5.setText("전화번호  : ");
 
         jLabel6.setFont(new java.awt.Font("굴림", 0, 13)); // NOI18N
-        jLabel6.setText("전화번호  : ");
+        jLabel6.setText("인원 수  : ");
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -209,10 +217,9 @@ public class Reservation extends javax.swing.JFrame {
                             .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField2)
-                                .addComponent(jTextField3)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextField2)
+                            .addComponent(jTextField3)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
                             .addComponent(jTextField5)
                             .addComponent(jTextField6)))
@@ -252,9 +259,9 @@ public class Reservation extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
                 .addComponent(jButton1)
-                .addGap(38, 38, 38))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         pack();
@@ -263,43 +270,73 @@ public class Reservation extends javax.swing.JFrame {
     
     // 방 번호 입력란
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        
-       
-        
+
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     
     // 고객 이름 입력란
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-                
-       
-        
+
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     
-    // 인원 수 입력란
+    // 전화번호 입력란
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-                        
-       
-        
+
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     
-    // 전화번호 입력란
+    // 인원수 입력란
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-                                
-       
-        
+
     }//GEN-LAST:event_jTextField4ActionPerformed
 
     // 예약 버튼
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
+    // 행
+    String line;
+        
+    // 방 번호 입력
+    int roomNumber = Integer.parseInt(jTextField1.getText());
+    // 고객 이름 입력
+    String userName = jTextField2.getText();
+    // 전화번호 입력
+    String phoneNumber = jTextField3.getText();
+    // 인원 수 입력
+    int userNumber = Integer.parseInt(jTextField4.getText());
+    // 체크인 상태
+    boolean checkIn_Status = false;
+    // 체크인 시간
+    String checkIn_time = jTextField5.getText();
+    // 체크아웃 시간
+    String checkOut_time = jTextField6.getText();
+    
+    
+    // (예약 전체 관리)파일 생성
+    File reservation_file = new File("Guest_Reservation.txt");
+    
+    try{
+        FileWriter filewriter = new FileWriter(reservation_file, true);
+        
+            // 파일에 저장
+            line = String.format("%d/%s/%s/%d/%s/%s%n",roomNumber,userName,phoneNumber,userNumber,checkIn_time,checkOut_time);
+            System.out.println(line);
+            filewriter.write(line);
+            
+            filewriter.close();
+            // 예약 성공시 뜨는 대화상자
+            JOptionPane.showMessageDialog(null, "예약 완료", "Result", JOptionPane.WARNING_MESSAGE);
+
+    } catch(FileNotFoundException e){
+    }   catch (IOException ex) {
+            Logger.getLogger(First_display.class.getName()).log(Level.SEVERE, null, ex);
+        }
    
+    
        
        
-        // 예약 성공시 뜨는 대화상자
-        JOptionPane.showMessageDialog(null, "예약 완료", "Result", JOptionPane.WARNING_MESSAGE);
+        
         
         /*
         // 예약 실패 시 뜨는 대화상자
