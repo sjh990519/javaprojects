@@ -194,7 +194,7 @@ public class First_display extends javax.swing.JFrame {
     
     // Login Button
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+        
     String passID = jTextField1.getText();
     String passPW = new String(jPasswordField1.getPassword());
     String []login;
@@ -210,6 +210,7 @@ public class First_display extends javax.swing.JFrame {
         BufferedReader bufReader = new BufferedReader(filereader);
         
         while((line = bufReader.readLine()) != null){
+            
             // 로그인 성공
             if(line.contains(passID)){
             
