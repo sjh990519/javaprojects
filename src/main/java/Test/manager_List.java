@@ -184,9 +184,15 @@ public class manager_List extends javax.swing.JFrame {
     
     // 직원 및 매니저 관리
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        
+        System_User_List p = new System_User_List(); 
+        p.setVisible(true);
+        setVisible(false);
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    
+    
     /**
      * @param args the command line arguments
      */
