@@ -5,6 +5,11 @@
  */
 package Test;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -13,10 +18,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Reservation_List extends javax.swing.JFrame {
     
+    JTable table;
     
-    
-    
-    
+  
 
     /**
      * Creates new form Reservation_List
@@ -215,6 +219,7 @@ public class Reservation_List extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Reservation_List().setVisible(true);
+                
             }
         });
 
