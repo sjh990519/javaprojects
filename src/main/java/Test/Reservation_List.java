@@ -25,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Reservation_List extends javax.swing.JFrame {
     
-    private void pp() {
+    public void pp() {
     // 예약관리 목록 텍스트 파일 생성
     File guest_list = new File("Guest_Reservation.txt");
     
@@ -191,13 +191,14 @@ public class Reservation_List extends javax.swing.JFrame {
     
     // 수정 버튼
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+       
+         
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    
     
     // 삭제 버튼
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     
