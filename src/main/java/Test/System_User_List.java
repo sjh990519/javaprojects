@@ -5,17 +5,94 @@
  */
 package Test;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author 916
  */
 public class System_User_List extends javax.swing.JFrame {
+    
+    // 스테프 테이블 출력
+    public void staff() {
+        
+    // 스테프 목록 텍스트 파일 생성
+    File staff_list = new File("s_login_info.txt");
+    
+     try {
+        FileReader filereader = null;
+        filereader = new FileReader(staff_list);
+        
+        BufferedReader bufReader = new BufferedReader(filereader);
+        DefaultTableModel table = (DefaultTableModel)jTable1.getModel();
+        
+        String line;
+        String[] key;
+        
+      
+        // 한 행씩 읽어서 한 행씩 테이블에 저장
+        while((line = bufReader.readLine()) != null){
+            key = line.split("/");
+            Object[] list = {key[0],key[1]};
+            table.addRow(list);
+                
+        }
+
+    }catch (FileNotFoundException ex) {
+            Logger.getLogger(Reservation_List.class.getName()).log(Level.SEVERE, null, ex);
+        }catch (IOException ex) {
+            Logger.getLogger(Reservation_List.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}
+    
+    // 메니저 테이블 출력
+    public void manager() {
+        
+    // 메니저 목록 텍스트 파일 생성
+    File staff_list = new File("m_login_info.txt");
+    
+     try {
+        FileReader filereader = null;
+        filereader = new FileReader(staff_list);
+        
+        BufferedReader bufReader = new BufferedReader(filereader);
+        DefaultTableModel table = (DefaultTableModel)jTable2.getModel();
+        
+        String line;
+        String[] key;
+        
+      
+        // 한 행씩 읽어서 한 행씩 테이블에 저장
+        while((line = bufReader.readLine()) != null){
+            key = line.split("/");
+            Object[] list = {key[0],key[1]};
+            table.addRow(list);
+                
+        }
+
+    }catch (FileNotFoundException ex) {
+            Logger.getLogger(Reservation_List.class.getName()).log(Level.SEVERE, null, ex);
+        }catch (IOException ex) {
+            Logger.getLogger(Reservation_List.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}
+
+    
 
     /**
      * Creates new form staff_manager_List
      */
     public System_User_List() {
         initComponents();
+        staff();
+        manager();
     }
 
     /**
