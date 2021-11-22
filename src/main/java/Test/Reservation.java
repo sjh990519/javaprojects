@@ -224,11 +224,11 @@ public class Reservation extends javax.swing.JFrame {
                                 .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
                                 .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(152, 152, 152)
                         .addComponent(jButton1)))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -326,8 +326,6 @@ public class Reservation extends javax.swing.JFrame {
             filewriter.write(line);
             
             filewriter.close();
-            // 예약 성공시 뜨는 대화상자
-            JOptionPane.showMessageDialog(null, "예약 완료", "Result", JOptionPane.WARNING_MESSAGE);
             
             // TextField 입력 후 다시 공백 
             jTextField1.setText("");
@@ -337,6 +335,11 @@ public class Reservation extends javax.swing.JFrame {
             jTextField5.setText("");
             jTextField6.setText("");
             
+            // 예약 성공시 뜨는 대화상자
+            JOptionPane.showMessageDialog(null, "예약 완료", "Result", JOptionPane.WARNING_MESSAGE);
+            staff_List p = new staff_List();
+            p.setVisible(true);
+            setVisible(false);
             
     } catch(FileNotFoundException e){
     }   catch (IOException ex) {

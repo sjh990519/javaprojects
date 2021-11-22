@@ -140,7 +140,7 @@
                               <Component id="jTextField5" alignment="0" max="32767" attributes="0"/>
                               <Component id="jTextField4" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="jTextField3" alignment="0" min="-2" pref="88" max="-2" attributes="0"/>
+                          <Component id="jTextField3" alignment="0" min="-2" pref="103" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -148,7 +148,7 @@
                       <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="85" max="32767" attributes="0"/>
+              <EmptySpace pref="70" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
