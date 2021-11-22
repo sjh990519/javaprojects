@@ -106,7 +106,7 @@ public class Reservation extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("휴먼옛체", 0, 18)); // NOI18N
         jLabel1.setText("Guest Reservation");
 
-        jLabel2.setText("( 손님 예약 )");
+        jLabel2.setText("( 고객 예약 )");
 
         jLabel3.setFont(new java.awt.Font("굴림", 0, 13)); // NOI18N
         jLabel3.setText("객실 번호  : ");
@@ -323,7 +323,6 @@ public class Reservation extends javax.swing.JFrame {
         
             // 파일에 저장
             line = String.format("%d/%s/%s/%d/%s/%s%n",roomNumber,userName,phoneNumber,userNumber,checkIn_time,checkOut_time);
-            System.out.println(line);
             filewriter.write(line);
             
             filewriter.close();

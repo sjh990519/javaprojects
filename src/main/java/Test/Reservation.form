@@ -207,7 +207,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="( &#xc190;&#xb2d8; &#xc608;&#xc57d; )"/>
+        <Property name="text" type="java.lang.String" value="( &#xace0;&#xac1d; &#xc608;&#xc57d; )"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
