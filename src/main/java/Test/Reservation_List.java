@@ -43,7 +43,7 @@ public class Reservation_List extends javax.swing.JFrame {
         // 한 행씩 읽어서 한 행씩 테이블에 저장
         while((line = bufReader.readLine()) != null){
             key = line.split("/");
-            Object[] list = {key[0],key[1],key[2],key[3],key[4],key[5]};
+            Object[] list = {key[0],key[1],key[2],key[3],key[4],key[5],key[6]};
             table.addRow(list);
                 
         }
@@ -96,11 +96,11 @@ public class Reservation_List extends javax.swing.JFrame {
 
             },
             new String [] {
-                "방 번호", "이름", "전화번호", "인원 수", "체크인 시간", "체크아웃 시간"
+                "방 번호", "이름", "전화번호", "인원 수", "체크인 시간", "체크아웃 시간", "결제 방법"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -164,8 +164,7 @@ public class Reservation_List extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(37, 37, 37)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel2)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(

@@ -65,6 +65,8 @@ public class Reservation extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jTextField7 = new javax.swing.JTextField();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -169,6 +171,15 @@ public class Reservation extends javax.swing.JFrame {
             }
         });
 
+        jLabel9.setFont(new java.awt.Font("굴림", 0, 13)); // NOI18N
+        jLabel9.setText("결제 방법 : ");
+
+        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField7ActionPerformed(evt);
+            }
+        });
+
         jMenu3.setText("Menu");
 
         jMenuItem1.setText("뒤로가기");
@@ -214,7 +225,8 @@ public class Reservation extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(jLabel5)
                             .addComponent(jLabel7)
-                            .addComponent(jLabel8))
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -224,11 +236,12 @@ public class Reservation extends javax.swing.JFrame {
                                 .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
                                 .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(152, 152, 152)
+                        .addGap(156, 156, 156)
                         .addComponent(jButton1)))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,9 +274,13 @@ public class Reservation extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addGap(30, 30, 30))
         );
 
         pack();
@@ -313,6 +330,8 @@ public class Reservation extends javax.swing.JFrame {
     String checkIn_time = jTextField5.getText();
     // 체크아웃 시간
     String checkOut_time = jTextField6.getText();
+    // 결제 방법
+    String payType = jTextField7.getText();
     
     
     // (예약 전체 관리)파일 생성
@@ -322,7 +341,7 @@ public class Reservation extends javax.swing.JFrame {
         FileWriter filewriter = new FileWriter(reservation_file, true);
         
             // 파일에 저장
-            line = String.format("%d/%s/%s/%d/%s/%s%n",roomNumber,userName,phoneNumber,userNumber,checkIn_time,checkOut_time);
+            line = String.format("%d/%s/%s/%d/%s/%s/%s%n",roomNumber,userName,phoneNumber,userNumber,checkIn_time,checkOut_time,payType);
             filewriter.write(line);
             
             filewriter.close();
@@ -334,6 +353,7 @@ public class Reservation extends javax.swing.JFrame {
             jTextField4.setText("");
             jTextField5.setText("");
             jTextField6.setText("");
+            jTextField7.setText("");
             
             // 예약 성공시 뜨는 대화상자
             JOptionPane.showMessageDialog(null, "예약 완료", "Result", JOptionPane.WARNING_MESSAGE);
@@ -388,6 +408,12 @@ public class Reservation extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField6ActionPerformed
 
     
+    // 결제 방법
+    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField7ActionPerformed
+
+    
     /**
      * @param args the command line arguments
      */
@@ -435,6 +461,7 @@ public class Reservation extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -449,5 +476,6 @@ public class Reservation extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 }
