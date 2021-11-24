@@ -417,15 +417,23 @@ public class all_Room extends javax.swing.JFrame {
         //jTextField8.setText(jTextField1.getText());
         
         // 검색한 키값 찾기
+        
+        
+        
         while((line = bufReader.readLine()) != null){
- 
+            
             key = line.split("/");
             Object[] list = {key[0],key[1],key[2],key[3]};
             
-            if(list[0] == roomnum){
+            if(list[0].equals(roomnum)){
                 
+                // All_Room.txt 읽어와서 방 defaultType 출력
+                jTextField8.setText((String) list[0]);
+                jTextField4.setText((String) list[1]);
+                jTextField5.setText("" + "/" + (String) list[2]);
+                jTextField11.setText((String) list[3]);
                 
-                jTextField8.setText(key[0]);
+                        
             }
             
             
