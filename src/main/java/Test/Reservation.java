@@ -338,6 +338,7 @@ public class Reservation extends javax.swing.JFrame {
     
     // (예약 전체 관리)파일 생성
     File reservation_file = new File("Guest_Reservation.txt");
+    File all_Room_file = new File("All_Room_Info.txt");
     
         try {
             FileReader filereader = null;
@@ -347,17 +348,47 @@ public class Reservation extends javax.swing.JFrame {
             String line1 = null;
             String[] k = null;
             int count = 0;
-        
+
+        // 중복된 방 검사하는 메서드
         while((line1 = bufReader.readLine()) != null){
-            
             k = line1.split("/");
+
             if(k[0].equals(jTextField1.getText())){
+                // 같은방 있을시 카운트 한다.
                 count++;
             }
-            
         }
         
-        if(count == 0){
+        
+        // default 인원 수 초과 검사하는 메서드
+        FileReader filereader1 = null;
+        filereader1 = new FileReader(all_Room_file);
+        BufferedReader bfReader = new BufferedReader(filereader1);
+        
+            String line2 = null;
+            String[] k1 = null;
+            int count1 = 0;
+            int p = 0;
+            
+        while((line2 = bfReader.readLine()) != null){
+
+           k1 = line2.split("/");
+            
+           if(k1[0].equals(jTextField1.getText())){
+           
+               p = Integer.parseInt(k1[2]);
+
+              if(p < Integer.parseInt(jTextField4.getText())){
+                // 같은방 있을시 카운트 한다.
+                count1++;
+                }    
+           }
+
+        }
+
+        
+        // 같은방 없을시
+        if(count == 0 && count1 == 0){
             FileWriter filewriter = new FileWriter(reservation_file, true);
         
                 // 파일에 저장
@@ -381,7 +412,8 @@ public class Reservation extends javax.swing.JFrame {
                 p.setVisible(true);
                 setVisible(false);
         }
-        else
+        // 같은방 있을 시
+        else if(count != 0){
             JOptionPane.showMessageDialog(null, "이미 예약된 방 입니다.", "Result", JOptionPane.WARNING_MESSAGE);
             // TextField 입력 후 다시 공백
             jTextField1.setText("");
@@ -391,6 +423,21 @@ public class Reservation extends javax.swing.JFrame {
             jTextField5.setText("");
             jTextField6.setText("");
             jTextField7.setText("");
+        }
+        // 인원 수 초과시
+        else if(count1 != 0){
+            
+            JOptionPane.showMessageDialog(null, "인원 수 를 초과하였습니다.", "Result", JOptionPane.WARNING_MESSAGE);
+            // TextField 입력 후 다시 공백
+            jTextField1.setText("");
+            jTextField2.setText("");
+            jTextField3.setText("");
+            jTextField4.setText("");
+            jTextField5.setText("");
+            jTextField6.setText("");
+            jTextField7.setText("");
+        
+        }
         
             
         } catch (FileNotFoundException ex) {
