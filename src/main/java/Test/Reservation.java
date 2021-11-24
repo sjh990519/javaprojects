@@ -315,6 +315,7 @@ public class Reservation extends javax.swing.JFrame {
 
     // 행
     String line;
+    String[] key;
         
     // 방 번호 입력
     int roomNumber = Integer.parseInt(jTextField1.getText());
@@ -336,35 +337,44 @@ public class Reservation extends javax.swing.JFrame {
     
     // (예약 전체 관리)파일 생성
     File reservation_file = new File("Guest_Reservation.txt");
+    FileReader filereader = null;
+        try {
+            filereader = new FileReader(reservation_file);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Reservation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         BufferedReader bufReader = new BufferedReader(filereader);
     
-    try{
+
+        try{
         FileWriter filewriter = new FileWriter(reservation_file, true);
-        
-            // 파일에 저장
-            line = String.format("%d/%s/%s/%d/%s/%s/%s%n",roomNumber,userName,phoneNumber,userNumber,checkIn_time,checkOut_time,payType);
-            filewriter.write(line);
-            
-            filewriter.close();
-            
-            // TextField 입력 후 다시 공백 
-            jTextField1.setText("");
-            jTextField2.setText("");
-            jTextField3.setText("");
-            jTextField4.setText("");
-            jTextField5.setText("");
-            jTextField6.setText("");
-            jTextField7.setText("");
-            
-            // 예약 성공시 뜨는 대화상자
-            JOptionPane.showMessageDialog(null, "예약 완료", "Result", JOptionPane.WARNING_MESSAGE);
-            staff_List p = new staff_List();
-            p.setVisible(true);
-            setVisible(false);
-            
-    } catch(FileNotFoundException e){
-    }   catch (IOException ex) {
+                    
+        // 파일에 저장
+        line = String.format("%d/%s/%s/%d/%s/%s/%s%n",roomNumber,userName,phoneNumber,userNumber,checkIn_time,checkOut_time,payType);
+        filewriter.write(line);
+                    
+        filewriter.close();
+                    
+        // TextField 입력 후 다시 공백
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
+        jTextField6.setText("");
+        jTextField7.setText("");
+                    
+        // 예약 성공시 뜨는 대화상자
+        JOptionPane.showMessageDialog(null, "예약 완료", "Result", JOptionPane.WARNING_MESSAGE);
+        staff_List p = new staff_List();
+        p.setVisible(true);
+        setVisible(false);
+                    
+        } catch(FileNotFoundException e){
+        }   catch (IOException ex) {
             Logger.getLogger(First_display.class.getName()).log(Level.SEVERE, null, ex);
         }
+               
    
     
        

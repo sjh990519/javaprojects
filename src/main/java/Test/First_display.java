@@ -16,6 +16,7 @@ package Test;
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class First_display extends javax.swing.JFrame {
@@ -28,6 +29,7 @@ public class First_display extends javax.swing.JFrame {
     public First_display() {
         initComponents();
         setTitle("Login");
+
     }
 
     /**
@@ -328,7 +330,6 @@ public class First_display extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new First_display().setVisible(true);
