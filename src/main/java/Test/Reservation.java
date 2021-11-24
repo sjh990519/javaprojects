@@ -408,8 +408,9 @@ public class Reservation extends javax.swing.JFrame {
                     
                 // 예약 성공시 뜨는 대화상자
                 JOptionPane.showMessageDialog(null, "예약 완료", "Result", JOptionPane.WARNING_MESSAGE);
-                staff_List p = new staff_List();
-                p.setVisible(true);
+                
+                staff_List po = new staff_List();
+                po.setVisible(true);
                 setVisible(false);
         }
         // 같은방 있을 시
