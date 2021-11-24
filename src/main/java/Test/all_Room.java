@@ -400,15 +400,22 @@ public class all_Room extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     
         String roomnum = jTextField1.getText();
+        String user;
         
         // 방 defaultType 목록 텍스트 파일 생성
         File allRoom_list = new File("All_Room_Info.txt");
+        // 예약목록.txt 생성
+        File guest_list = new File("Guest_Reservation.txt");
     
         try {
         FileReader filereader = null;
+        FileReader filereader1 = null;
+        
         filereader = new FileReader(allRoom_list);
+        filereader1 = new FileReader(guest_list);
         
         BufferedReader bufReader = new BufferedReader(filereader);
+        BufferedReader bufReader1 = new BufferedReader(filereader1);
         
         String line;
         String[] key;
@@ -419,7 +426,7 @@ public class all_Room extends javax.swing.JFrame {
         // 검색한 키값 찾기
         
         
-        
+        // All_Room.txt 찾기
         while((line = bufReader.readLine()) != null){
             
             key = line.split("/");
@@ -430,9 +437,32 @@ public class all_Room extends javax.swing.JFrame {
                 // All_Room.txt 읽어와서 방 defaultType 출력
                 jTextField8.setText((String) list[0]);
                 jTextField4.setText((String) list[1]);
-                jTextField5.setText("" + "/" + (String) list[2]);
+                user = (String) list[2];
                 jTextField11.setText((String) list[3]);
                 
+                        
+            }
+            
+            
+        }
+        
+        
+        
+        // Guest_Reservation.txt 읽어와서 예약정보 출력
+        while((line = bufReader1.readLine()) != null){
+            
+            key = line.split("/");
+            Object[] list = {key[0],key[1],key[2],key[3],key[4],key[5],key[6]};
+            
+            if(list[0].equals(roomnum)){
+                
+                // Guest_Reservation.txt 읽어와서 예약목록 출력
+               jTextField2.setText((String) list[1]);
+               jTextField3.setText((String) list[2]);
+               jTextField5.setText((String) list[3]);
+               jTextField6.setText((String) list[4]);
+               jTextField7.setText((String) list[5]);
+               jTextField10.setText((String) list[6]);
                         
             }
             
