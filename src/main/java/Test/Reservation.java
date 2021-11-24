@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 /**
  *
  * @author 915-9
@@ -314,7 +315,7 @@ public class Reservation extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
     // 행
-    String line;
+    String line = null;
     String[] key;
         
     // 방 번호 입력
@@ -337,44 +338,67 @@ public class Reservation extends javax.swing.JFrame {
     
     // (예약 전체 관리)파일 생성
     File reservation_file = new File("Guest_Reservation.txt");
-    FileReader filereader = null;
+    
         try {
+            FileReader filereader = null;
             filereader = new FileReader(reservation_file);
+            BufferedReader bufReader = new BufferedReader(filereader);
+        
+            String line1 = null;
+            String[] k = null;
+            int count = 0;
+        
+        while((line1 = bufReader.readLine()) != null){
+            
+            k = line1.split("/");
+            if(k[0].equals(jTextField1.getText())){
+                count++;
+            }
+            
+        }
+        
+        if(count == 0){
+            FileWriter filewriter = new FileWriter(reservation_file, true);
+        
+                // 파일에 저장
+                line = String.format("%d/%s/%s/%d/%s/%s/%s%n",roomNumber,userName,phoneNumber,userNumber,checkIn_time,checkOut_time,payType);
+                filewriter.write(line);
+
+                filewriter.close();
+                    
+                // TextField 입력 후 다시 공백
+                jTextField1.setText("");
+                jTextField2.setText("");
+                jTextField3.setText("");
+                jTextField4.setText("");
+                jTextField5.setText("");
+                jTextField6.setText("");
+                jTextField7.setText("");
+                    
+                // 예약 성공시 뜨는 대화상자
+                JOptionPane.showMessageDialog(null, "예약 완료", "Result", JOptionPane.WARNING_MESSAGE);
+                staff_List p = new staff_List();
+                p.setVisible(true);
+                setVisible(false);
+        }
+        else
+            JOptionPane.showMessageDialog(null, "이미 예약된 방 입니다.", "Result", JOptionPane.WARNING_MESSAGE);
+            // TextField 입력 후 다시 공백
+            jTextField1.setText("");
+            jTextField2.setText("");
+            jTextField3.setText("");
+            jTextField4.setText("");
+            jTextField5.setText("");
+            jTextField6.setText("");
+            jTextField7.setText("");
+        
+            
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Reservation.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Reservation.class.getName()).log(Level.SEVERE, null, ex);
         }
-         BufferedReader bufReader = new BufferedReader(filereader);
-    
-
-        try{
-        FileWriter filewriter = new FileWriter(reservation_file, true);
-                    
-        // 파일에 저장
-        line = String.format("%d/%s/%s/%d/%s/%s/%s%n",roomNumber,userName,phoneNumber,userNumber,checkIn_time,checkOut_time,payType);
-        filewriter.write(line);
-                    
-        filewriter.close();
-                    
-        // TextField 입력 후 다시 공백
-        jTextField1.setText("");
-        jTextField2.setText("");
-        jTextField3.setText("");
-        jTextField4.setText("");
-        jTextField5.setText("");
-        jTextField6.setText("");
-        jTextField7.setText("");
-                    
-        // 예약 성공시 뜨는 대화상자
-        JOptionPane.showMessageDialog(null, "예약 완료", "Result", JOptionPane.WARNING_MESSAGE);
-        staff_List p = new staff_List();
-        p.setVisible(true);
-        setVisible(false);
-                    
-        } catch(FileNotFoundException e){
-        }   catch (IOException ex) {
-            Logger.getLogger(First_display.class.getName()).log(Level.SEVERE, null, ex);
-        }
-               
+         
    
     
        
