@@ -163,7 +163,11 @@ public class manager_List extends javax.swing.JFrame {
     
     // All_Food Management (식당 전체 관리)
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+
+        Menu_list menu = new Menu_list();
+        menu.setVisible(true);
+        setVisible(false);
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     
