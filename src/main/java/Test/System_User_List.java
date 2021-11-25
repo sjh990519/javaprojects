@@ -49,6 +49,8 @@ public class System_User_List extends javax.swing.JFrame {
             Logger.getLogger(Reservation_List.class.getName()).log(Level.SEVERE, null, ex);
         }catch (IOException ex) {
             Logger.getLogger(Reservation_List.class.getName()).log(Level.SEVERE, null, ex);
+        }catch (Exception e) {
+            e.getStackTrace();
         }
 }
     
@@ -322,6 +324,9 @@ public class System_User_List extends javax.swing.JFrame {
     // 직원 추가
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
+        staff_Info_add ad = new staff_Info_add();
+        ad.setVisible(true);
+        setVisible(false);
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
