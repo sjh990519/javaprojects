@@ -107,7 +107,15 @@ public class Menu_list extends javax.swing.JFrame {
             new String [] {
                 "음식 종류", "음식 이름", "음식 가격", "음식 수량"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setFont(new java.awt.Font("휴먼옛체", 0, 18)); // NOI18N
