@@ -154,8 +154,8 @@ public class manager_List extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
         // 예약 전체관리 창 들어가기
-        Reservation_List p = new Reservation_List();
-        p.setVisible(true);
+        Reservation_List ppp = new Reservation_List();
+        ppp.setVisible(true);
         setVisible(false);
         
     }//GEN-LAST:event_jButton2ActionPerformed

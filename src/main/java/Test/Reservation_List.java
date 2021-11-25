@@ -5,6 +5,8 @@
  */
 package Test;
 
+
+
 import java.io.*;
 import java.io.BufferedReader;
 import java.io.File;
@@ -25,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Reservation_List extends javax.swing.JFrame {
     
-    public void pp() {
+    public void master_list() {
     // 예약관리 목록 텍스트 파일 생성
     File guest_list = new File("Guest_Reservation.txt");
     
@@ -39,13 +41,12 @@ public class Reservation_List extends javax.swing.JFrame {
         String line;
         String[] key;
         
-      
+        
         // 한 행씩 읽어서 한 행씩 테이블에 저장
         while((line = bufReader.readLine()) != null){
             key = line.split("/");
             Object[] list = {key[0],key[1],key[2],key[3],key[4],key[5],key[6]};
             table.addRow(list);
-                
         }
 
     }catch (FileNotFoundException ex) {
@@ -59,9 +60,10 @@ public class Reservation_List extends javax.swing.JFrame {
      * Creates new form Reservation_List
      */
     public Reservation_List(){
+        
         initComponents();
         setTitle("Guesrt Reservation_List");
-        pp();
+        master_list();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -151,9 +153,9 @@ public class Reservation_List extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(35, 35, 35)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -248,9 +250,9 @@ public class Reservation_List extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Reservation_List p = new Reservation_List();
-                p.pp();
+
                 new Reservation_List().setVisible(true);
+                
             }
         });
     }
