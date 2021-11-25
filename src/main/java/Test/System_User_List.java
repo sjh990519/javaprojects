@@ -13,12 +13,18 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.table.*;
+
 
 /**
  *
  * @author 916
  */
 public class System_User_List extends javax.swing.JFrame {
+
+
     
     // 스테프 테이블 출력
     public void staff() {
@@ -336,13 +342,15 @@ public class System_User_List extends javax.swing.JFrame {
     
     // 직원 수정
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     
     // 직원 삭제
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        
+        
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     
@@ -367,10 +375,7 @@ public class System_User_List extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    
-    
-    
-    
+
     /**
      * @param args the command line arguments
      */

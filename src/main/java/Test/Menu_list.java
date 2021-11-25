@@ -297,9 +297,9 @@ public class Menu_list extends javax.swing.JFrame {
 
         String line;
         
-        String FoodName = Name_Fd.getText();
+        String FoodType = Name_Fd.getText();
+        String FoodName = Type_Fd.getText();
         int FoodPrice = Integer.parseInt(Price_Fd.getText());
-        String FoodType = Type_Fd.getText();
         int FoodNum = Integer.parseInt(Num_Fd.getText());
         
          File menu_file = new File("Food_Add.txt");

@@ -208,6 +208,8 @@ public class First_display extends javax.swing.JFrame {
     // 직원 파일 생성
     File s_file = new File("s_login_info.txt");
     
+    
+    
     try{
         FileReader filereader = new FileReader(s_file);
         BufferedReader bufReader = new BufferedReader(filereader);
@@ -232,9 +234,12 @@ public class First_display extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "ㅋ 실패 다시", "Result", JOptionPane.WARNING_MESSAGE);
             
             }
-            else
-                    JOptionPane.showMessageDialog(null, "ㅋ 실패 다시", "Result", JOptionPane.WARNING_MESSAGE);
+            
         }
+        
+        
+        
+        
     } catch(FileNotFoundException e){
     }   catch (IOException ex) {
             Logger.getLogger(First_display.class.getName()).log(Level.SEVERE, null, ex);
