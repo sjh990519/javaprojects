@@ -54,6 +54,7 @@ public class System_User_List extends javax.swing.JFrame {
         }
 }
     
+    
     // 메니저 테이블 출력
     public void manager() {
         
@@ -83,6 +84,8 @@ public class System_User_List extends javax.swing.JFrame {
             Logger.getLogger(Reservation_List.class.getName()).log(Level.SEVERE, null, ex);
         }catch (IOException ex) {
             Logger.getLogger(Reservation_List.class.getName()).log(Level.SEVERE, null, ex);
+        }catch (Exception e) {
+            e.getStackTrace();
         }
 }
 
@@ -345,7 +348,11 @@ public class System_User_List extends javax.swing.JFrame {
     
     // 메니저 추가
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        
+        Manager_Info_add md = new Manager_Info_add();
+        md.setVisible(true);
+        setVisible(false);
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     

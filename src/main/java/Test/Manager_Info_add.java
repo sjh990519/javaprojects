@@ -5,6 +5,13 @@
  */
 package Test;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author 916
@@ -60,6 +67,11 @@ public class Manager_Info_add extends javax.swing.JFrame {
         });
 
         jButton1.setText("추가");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,6 +177,50 @@ public class Manager_Info_add extends javax.swing.JFrame {
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField1ActionPerformed
+
+    
+    // 추가 버튼
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       
+         
+        File manager_file = new File("m_login_info.txt");
+        FileWriter filewriter = null;
+        try {
+            filewriter = new FileWriter(manager_file, true);
+        } catch (IOException ex) {
+            Logger.getLogger(staff_Info_add.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        String line = null;
+        
+        // 메니저 ID 입력
+        String staff_id = jTextField1.getText();
+        // 메니저 PW 입력
+        String staff_pw = jPasswordField1.getText();
+        
+                // 파일에 저장
+                line = String.format("%s/%s%n",staff_id,staff_pw);
+        try {
+            filewriter.write(line);
+        } catch (IOException ex) {
+            Logger.getLogger(staff_Info_add.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            filewriter.close();
+        } catch (IOException ex) {
+            Logger.getLogger(staff_Info_add.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+                // 예약 성공시 뜨는 대화상자
+                JOptionPane.showMessageDialog(null, "추가 완료", "Result", JOptionPane.WARNING_MESSAGE);
+                
+                System_User_List sul = new System_User_List();
+                sul.setVisible(true);
+                setVisible(false);
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     
     /**
