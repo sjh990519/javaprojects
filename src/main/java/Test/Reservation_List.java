@@ -53,6 +53,8 @@ public class Reservation_List extends javax.swing.JFrame {
             Logger.getLogger(Reservation_List.class.getName()).log(Level.SEVERE, null, ex);
         }catch (IOException ex) {
             Logger.getLogger(Reservation_List.class.getName()).log(Level.SEVERE, null, ex);
+        }catch (Exception e) {
+            e.getStackTrace();
         }
 }
     
@@ -250,9 +252,7 @@ public class Reservation_List extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-
                 new Reservation_List().setVisible(true);
-                
             }
         });
     }

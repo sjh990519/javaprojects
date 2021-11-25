@@ -77,10 +77,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="262" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel2" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="jLabel2" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
@@ -109,13 +106,21 @@
               </Group>
               <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
           </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" pref="77" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-              <Component id="jButton2" min="-2" pref="77" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-              <Component id="jButton3" min="-2" pref="77" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
+                      <Component id="jButton1" min="-2" pref="77" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                      <Component id="jButton2" min="-2" pref="77" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                      <Component id="jButton3" min="-2" pref="77" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="254" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -123,11 +128,11 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane1" pref="447" max="32767" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -163,9 +168,9 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="0">
+                <Column editable="true" title="&#xc74c;&#xc2dd; &#xc885;&#xb958;" type="java.lang.Object"/>
                 <Column editable="true" title="&#xc74c;&#xc2dd; &#xc774;&#xb984;" type="java.lang.Object"/>
                 <Column editable="true" title="&#xc74c;&#xc2dd; &#xac00;&#xaca9;" type="java.lang.Object"/>
-                <Column editable="true" title="&#xc74c;&#xc2dd; &#xc885;&#xb958;" type="java.lang.Object"/>
                 <Column editable="true" title="&#xc74c;&#xc2dd; &#xc218;&#xb7c9;" type="java.lang.Object"/>
               </Table>
             </Property>
@@ -240,17 +245,17 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#xc74c;&#xc2dd; &#xc774;&#xb984;"/>
+        <Property name="text" type="java.lang.String" value="&#xc74c;&#xc2dd; &#xc885;&#xb958;"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#xc74c;&#xc2dd; &#xac00;&#xaca9;"/>
+        <Property name="text" type="java.lang.String" value="&#xc74c;&#xc2dd; &#xc774;&#xb984;"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#xc74c;&#xc2dd; &#xc885;&#xb958;"/>
+        <Property name="text" type="java.lang.String" value="&#xc74c;&#xc2dd; &#xac00;&#xaca9;"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="Name_Fd">

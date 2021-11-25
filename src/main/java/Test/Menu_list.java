@@ -24,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Menu_list extends javax.swing.JFrame {
 
-    public void ppp() {
+    public void Food() {
     // 음식관리 목록 텍스트 파일 생성
     File menu_list = new File("Food_Add.txt");
     
@@ -51,13 +51,15 @@ public class Menu_list extends javax.swing.JFrame {
             Logger.getLogger(Menu_list.class.getName()).log(Level.SEVERE, null, ex);
         }catch (IOException ex) {
             Logger.getLogger(Menu_list.class.getName()).log(Level.SEVERE, null, ex);
+        }catch (Exception e) {
+            e.getStackTrace();
         }
 }
     
     public Menu_list() {
         initComponents();
         setTitle("Food_Add_List");
-        ppp();
+        Food();
     }
 
     /**
@@ -103,7 +105,7 @@ public class Menu_list extends javax.swing.JFrame {
 
             },
             new String [] {
-                "음식 이름", "음식 가격", "음식 종류", "음식 수량"
+                "음식 종류", "음식 이름", "음식 가격", "음식 수량"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -135,11 +137,11 @@ public class Menu_list extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("음식 이름");
+        jLabel3.setText("음식 종류");
 
-        jLabel4.setText("음식 가격");
+        jLabel4.setText("음식 이름");
 
-        jLabel5.setText("음식 종류");
+        jLabel5.setText("음식 가격");
 
         Name_Fd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -199,9 +201,7 @@ public class Menu_list extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(262, 262, 262)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,22 +225,27 @@ public class Menu_list extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(96, 96, 96))
             .addGroup(layout.createSequentialGroup()
-                .addGap(143, 143, 143)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(143, 143, 143)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(254, 254, 254)
+                        .addComponent(jLabel1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(17, 17, 17)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -338,17 +343,17 @@ public class Menu_list extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Num_FdActionPerformed
 
-    //추가될 음식 이름
+    //추가될 음식 종류
     private void Name_FdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Name_FdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Name_FdActionPerformed
 
-    //추가될 음식 가격
+    //추가될 음식 이름
     private void Price_FdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Price_FdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Price_FdActionPerformed
 
-    //추가될 음식 종류
+    //추가될 음식 가격
     private void Type_FdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Type_FdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Type_FdActionPerformed
