@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -28,6 +29,45 @@ import javax.swing.table.DefaultTableModel;
  * @author 916
  */
 public class Reservation_List extends javax.swing.JFrame {
+    
+    
+     // 예약 정보 ArrayList 생성
+    ArrayList<guest_list> gu_list = new ArrayList<guest_list>(); 
+    
+    
+    // 예약 정보 마우스로 누른 키값 전달
+    public String getKey(JTable jTable1){
+        
+        String key = null;
+        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+        int row = jTable1.getSelectedRow();
+        key = (String) model.getValueAt(row, 0);
+        
+        return key;
+    }
+    
+    
+    // 예약 정보 txt파일을 ArrayList에 저장
+    public void getguest_list( ArrayList<guest_list> gu_list) throws FileNotFoundException, IOException{
+    
+        String str;
+        // String형 키값
+        String[] key;
+        
+        gu_list.clear();
+        
+        // 텍스트파일 생성
+        BufferedReader read = new BufferedReader(new InputStreamReader(new FileInputStream("Guest_Reservation.txt")));
+        
+        // txt 파일 한 행씩 읽어서 ArrayList에 저장
+        while((str = read.readLine()) != null){
+            key = str.split("/");
+            gu_list.add(new guest_list(key[0], key[1], key[2], key[3], key[4], key[5], key[6]));
+        }
+    }
+    
+    guest_list p1 = new guest_list();
+    
     
     public void master_list() {
     // 예약관리 목록 텍스트 파일 생성
@@ -106,7 +146,7 @@ public class Reservation_List extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -203,7 +243,34 @@ public class Reservation_List extends javax.swing.JFrame {
     
     // 삭제 버튼
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
+    
+        String str;
+        String key = getKey(jTable1);
+        FileOutputStream file;
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        
+        try{
+            getguest_list(gu_list);
+            
+            for(int i = 0; i<gu_list.size(); i++){
+                if(key.equals(gu_list.get(i).getroomN()))
+                    gu_list.remove(i);
+            }
+            
+            file = new FileOutputStream("Guest_Reservation.txt");
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(file));
+            
+            for(int i = 0; i < gu_list.size(); i++){
+                str = String.format("%s/%s/%s/%s/%s/%s/%s%n",gu_list.get(i).getroomN(), gu_list.get(i).getname(), gu_list.get(i).getphone(), gu_list.get(i).getuser(), gu_list.get(i).getcheckin_time(), gu_list.get(i).getcheckout_time(), gu_list.get(i).getpay());
+                writer.write(str);
+            }
+            writer.close();
+        }catch (FileNotFoundException ex) {
+            Logger.getLogger(Reservation_List.class.getName()).log(Level.SEVERE, null, ex);
+        }catch (IOException ex) {
+            Logger.getLogger(Reservation_List.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     

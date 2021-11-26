@@ -320,13 +320,13 @@ public class Reservation extends javax.swing.JFrame {
     String[] key;
         
     // 방 번호 입력
-    int roomNumber = Integer.parseInt(jTextField1.getText());
+    String roomNumber = jTextField1.getText();
     // 고객 이름 입력
     String userName = jTextField2.getText();
     // 전화번호 입력
     String phoneNumber = jTextField3.getText();
     // 인원 수 입력
-    int userNumber = Integer.parseInt(jTextField4.getText());
+    String userNumber = jTextField4.getText();
     // 체크인 상태
     boolean checkIn_Status = false;
     // 체크인 시간
@@ -393,7 +393,7 @@ public class Reservation extends javax.swing.JFrame {
             FileWriter filewriter = new FileWriter(reservation_file, true);
         
                 // 파일에 저장
-                line = String.format("%d/%s/%s/%d/%s/%s/%s%n",roomNumber,userName,phoneNumber,userNumber,checkIn_time,checkOut_time,payType);
+                line = String.format("%s/%s/%s/%s/%s/%s/%s%n",roomNumber,userName,phoneNumber,userNumber,checkIn_time,checkOut_time,payType);
                 filewriter.write(line);
 
                 filewriter.close();

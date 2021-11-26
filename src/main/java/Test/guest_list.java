@@ -12,13 +12,13 @@ package Test;
 public class guest_list {
     
     // 방 번호
-    int roomN;
+    String roomN;
     // 이름
     String name;
     // 전화번호
     String phone;
     // 인원 수
-    int user;
+    String user;
     // 체크인 시간
     String checkin_time;
     // 체크아웃 시간
@@ -32,7 +32,7 @@ public class guest_list {
     
     
     
-    public guest_list(int roomN, String name, String phone, int user, String checkin_time, String checkout_time, String pay){
+    public guest_list(String roomN, String name, String phone, String user, String checkin_time, String checkout_time, String pay){
     
         this.roomN = roomN;
         this.name = name;
@@ -46,7 +46,7 @@ public class guest_list {
     
     
     // 방 번호 getter
-    public int getroomN(){
+    public String getroomN(){
         return roomN;
     }
     
@@ -61,7 +61,7 @@ public class guest_list {
     }
     
     // 인원 수 getter
-    public int getuser(){
+    public String getuser(){
         return user;
     }
     

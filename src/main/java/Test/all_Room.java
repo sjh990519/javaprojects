@@ -469,7 +469,7 @@ public class all_Room extends javax.swing.JFrame {
                 // Guest_Reservation.txt 읽어와서 예약목록 출력
                jTextField2.setText((String) list[1]);
                jTextField3.setText((String) list[2]);
-               jTextField5.setText(user + "/" + (String) list[3]);
+               jTextField5.setText((String) list[3] + "/" + user);
                jTextField6.setText((String) list[4]);
                jTextField7.setText((String) list[5]);
                jTextField10.setText((String) list[6]);
