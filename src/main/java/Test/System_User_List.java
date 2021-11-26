@@ -5,6 +5,7 @@
  */
 package Test;
 
+import java.awt.List;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,8 +15,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.*;
+import java.io.BufferedWriter;
+import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.*;
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 
 
 /**
@@ -23,9 +34,79 @@ import javax.swing.table.*;
  * @author 916
  */
 public class System_User_List extends javax.swing.JFrame {
-
-
     
+    // 직원 정보 ArrayList 생성
+    ArrayList<staff> st_list = new ArrayList<staff>(); 
+    
+    // 메니저 정보 ArrayList 생성
+    ArrayList<manager> mg_list = new ArrayList<manager>(); 
+    
+    
+    // 직원 정보 마우스로 누른 키값 전달
+    public String getKey(JTable jTable1){
+        
+        String key = null;
+        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+        int row = jTable1.getSelectedRow();
+        key = (String) model.getValueAt(row, 0);
+        
+        return key;
+    }
+    
+    
+    // 직원 정보 txt파일을 ArrayList에 저장
+    public void getst_list( ArrayList<staff> st_list) throws FileNotFoundException, IOException{
+    
+        String str;
+        String[] key;
+        
+        st_list.clear();
+        
+        // 텍스트파일 생성
+        BufferedReader read = new BufferedReader(new InputStreamReader(new FileInputStream("s_login_info.txt")));
+        
+        // txt 파일 한 행씩 읽어서 ArrayList에 저장
+        while((str = read.readLine()) != null){
+            key = str.split("/");
+            st_list.add(new staff(key[0], key[1]));
+        }
+    }
+    
+    
+    // 메니저 정보 마우스로 누른 키값 전달
+    public String getKey1(JTable jTable2){
+        
+        String key = null;
+        DefaultTableModel model = (DefaultTableModel)jTable2.getModel();
+        int row = jTable2.getSelectedRow();
+        key = (String) model.getValueAt(row, 0);
+        
+        return key;
+    }
+    
+    
+    // 메니저 정보 txt파일을 ArrayList에 저장
+    public void getmg_list( ArrayList<manager> mg_list) throws FileNotFoundException, IOException{
+    
+        String str;
+        String[] key;
+        
+        mg_list.clear();
+        
+        // 텍스트파일 생성
+        BufferedReader read = new BufferedReader(new InputStreamReader(new FileInputStream("m_login_info.txt")));
+        
+        // txt 파일 한 행씩 읽어서 ArrayList에 저장
+        while((str = read.readLine()) != null){
+            key = str.split("/");
+            mg_list.add(new manager(key[0], key[1]));
+        }
+    }
+    
+    
+    staff pp = new staff();
+    manager p2 = new manager();
+
     // 스테프 테이블 출력
     public void staff() {
         
@@ -342,14 +423,39 @@ public class System_User_List extends javax.swing.JFrame {
     
     // 직원 수정
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        
+  
     }//GEN-LAST:event_jButton3ActionPerformed
 
     
     // 직원 삭제
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+
+        String str;
+        String key = getKey1(jTable1);
+        FileOutputStream file;
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         
-        
+        try{
+            getst_list(st_list);
+            
+            for(int i = 0; i<st_list.size(); i++){
+                if(key.equals(st_list.get(i).getID()))
+                    st_list.remove(i);
+            }
+            
+            file = new FileOutputStream("s_login_info.txt");
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(file));
+            
+            for(int i = 0; i < st_list.size(); i++){
+                str = String.format("%s/%s%n", st_list.get(i).getID(),st_list.get(i).getPW());
+                writer.write(str);
+            }
+            writer.close();
+        }catch (FileNotFoundException ex) {
+            Logger.getLogger(Reservation_List.class.getName()).log(Level.SEVERE, null, ex);
+        }catch (IOException ex) {
+            Logger.getLogger(Reservation_List.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -372,7 +478,34 @@ public class System_User_List extends javax.swing.JFrame {
     
     // 메니저 삭제
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+       
+        String str;
+        String key = getKey(jTable2);
+        FileOutputStream file;
+        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+        
+        try{
+            getmg_list(mg_list);
+            
+            for(int i = 0; i<mg_list.size(); i++){
+                if(key.equals(mg_list.get(i).getID()))
+                    mg_list.remove(i);
+            }
+            
+            file = new FileOutputStream("m_login_info.txt");
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(file));
+            
+            for(int i = 0; i < mg_list.size(); i++){
+                str = String.format("%s/%s%n", mg_list.get(i).getID(),mg_list.get(i).getPW());
+                writer.write(str);
+            }
+            writer.close();
+        }catch (FileNotFoundException ex) {
+            Logger.getLogger(Reservation_List.class.getName()).log(Level.SEVERE, null, ex);
+        }catch (IOException ex) {
+            Logger.getLogger(Reservation_List.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jButton6ActionPerformed
 
 

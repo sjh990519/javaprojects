@@ -559,7 +559,8 @@ public class all_Room extends javax.swing.JFrame {
     
     // 초기화
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+
+        jTextField1.setText("");        
         jTextField2.setText("");
         jTextField3.setText("");
         jTextField4.setText("");

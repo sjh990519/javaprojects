@@ -207,9 +207,7 @@ public class First_display extends javax.swing.JFrame {
     if(jCheckBox1.isSelected()){
     // 직원 파일 생성
     File s_file = new File("s_login_info.txt");
-    
-    
-    
+
     try{
         FileReader filereader = new FileReader(s_file);
         BufferedReader bufReader = new BufferedReader(filereader);
@@ -232,14 +230,11 @@ public class First_display extends javax.swing.JFrame {
                 }
                 else
                     JOptionPane.showMessageDialog(null, "ㅋ 실패 다시", "Result", JOptionPane.WARNING_MESSAGE);
-            
+                    break;
             }
             
         }
-        
-        
-        
-        
+
     } catch(FileNotFoundException e){
     }   catch (IOException ex) {
             Logger.getLogger(First_display.class.getName()).log(Level.SEVERE, null, ex);
@@ -260,13 +255,11 @@ public class First_display extends javax.swing.JFrame {
         
         
         while((line = bufReader.readLine()) != null){
-            System.out.println(line);
+
             // 로그인 성공
             if(line.contains(passID)){
                 
                 login = line.split("/");
-                System.out.println(login[0]);
-                System.out.println(login[1]);
                 if(login[1].equals(passPW)){
                     
                     JOptionPane.showMessageDialog(null, "메니저 로그인 성공", "Result", JOptionPane.WARNING_MESSAGE);
@@ -278,9 +271,8 @@ public class First_display extends javax.swing.JFrame {
                     
                 }else
                     JOptionPane.showMessageDialog(null, "ㅋ 실패 다시", "Result", JOptionPane.WARNING_MESSAGE);
-            
-            }else
-                    JOptionPane.showMessageDialog(null, "ㅋ 실패 다시", "Result", JOptionPane.WARNING_MESSAGE);
+                    break;
+            }
         }
     } catch(FileNotFoundException e){
     }   catch (IOException ex) {
