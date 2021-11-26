@@ -11,6 +11,13 @@ import java.util.ArrayList;
  *
  * @author 916
  */
+/*
+
+   System_User_List 직원 테이블 추가 수정 삭제 할 시 필요한 클래스
+
+    ArrayList 사용시 무조건 필요합니다.
+
+*/
 public class staff {
     
     private String id;
@@ -24,10 +31,12 @@ public class staff {
        this.pw = pw;
    }
 
+   // 직원 ID getter
    public String getID(){
        return id;
    }
    
+   // 직원 PW getter
    public String getPW(){
        return pw;
    }

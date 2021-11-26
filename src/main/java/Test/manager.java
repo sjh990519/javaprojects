@@ -9,6 +9,13 @@ package Test;
  *
  * @author 916
  */
+/*
+    
+   System_User_List 메니저 테이블 추가 수정 삭제 할 시 필요한 클래스
+
+    ArrayList 사용시 무조건 필요합니다.
+    
+*/
 public class manager {
 
     public manager(){}
@@ -22,10 +29,12 @@ public class manager {
        this.pw = pw;
    }
    
+   // 메니저 ID getter
     public String getID(){
        return id;
    }
    
+    // 메니저 PW getter
    public String getPW(){
        return pw;
    }
