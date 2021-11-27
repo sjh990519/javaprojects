@@ -88,7 +88,7 @@ public class Reservation_List extends javax.swing.JFrame {
         // 한 행씩 읽어서 한 행씩 테이블에 저장
         while((line = bufReader.readLine()) != null){
             key = line.split("/");
-            Object[] list = {key[0],key[1],key[2],key[3],key[4],key[5],key[6]};
+            Object[] list = {key[0],key[1],key[2],key[3],key[4],key[5],key[6],key[7]};
             table.addRow(list);
         }
 
@@ -114,12 +114,8 @@ public class Reservation_List extends javax.swing.JFrame {
         
         this.count = count;
         
-        System.out.printf("%d", count);
-        
         initComponents();
         setTitle("Guesrt Reservation_List");
-        backkey key  = new backkey();
-        System.out.printf("%d", key.getCount());
         master_list();
     }
     /**
@@ -145,9 +141,10 @@ public class Reservation_List extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("휴먼옛체", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("휴먼옛체", 0, 20)); // NOI18N
         jLabel1.setText("Guest Reservation List");
 
+        jLabel2.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
         jLabel2.setText("( 고객 예약 리스트 )");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -155,11 +152,11 @@ public class Reservation_List extends javax.swing.JFrame {
 
             },
             new String [] {
-                "방 번호", "이름", "전화번호", "인원 수", "체크인 시간", "체크아웃 시간", "결제 방법"
+                "방 번호", "이름", "전화번호", "인원 수", "체크인 일정", "Check_In", "체크아웃 일정", "Check_Out", "결제 방법", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -210,37 +207,38 @@ public class Reservation_List extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(286, 286, 286)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
+                        .addGap(388, 388, 388)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(425, 425, 425)
                         .addComponent(jLabel2)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 41, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 864, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addGap(36, 36, 36)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18)
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton2))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         pack();
@@ -250,6 +248,7 @@ public class Reservation_List extends javax.swing.JFrame {
     // 수정 버튼
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        
+        
          
     }//GEN-LAST:event_jButton1ActionPerformed
     

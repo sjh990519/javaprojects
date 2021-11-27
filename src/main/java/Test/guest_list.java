@@ -19,12 +19,18 @@ public class guest_list {
     String phone;
     // 인원 수
     String user;
+    // 체크인 일정
+    String checkin_day;
     // 체크인 시간
     String checkin_time;
+    // 체크아웃 일정
+    String checkout_day;
     // 체크아웃 시간
     String checkout_time;
     // 결제 방법
     String pay;
+    // 체크인 상태
+    String checkin_status;
     
     
     

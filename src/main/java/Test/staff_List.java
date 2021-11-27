@@ -163,8 +163,6 @@ public class staff_List extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         
         Reservation_List p = new Reservation_List(1);
-        backkey ky  = new backkey();
-        ky.setCount(1);
         p.setVisible(true);
         setVisible(false);
         
