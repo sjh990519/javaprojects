@@ -63,7 +63,7 @@ public class Reservation_List extends javax.swing.JFrame {
         // txt 파일 한 행씩 읽어서 ArrayList에 저장
         while((str = read.readLine()) != null){
             key = str.split("/");
-            gu_list.add(new guest_list(key[0], key[1], key[2], key[3], key[4], key[5], key[6]));
+            gu_list.add(new guest_list(key[0], key[1], key[2], key[3], key[4], key[5], key[6], key[7], key[8], key[9]));
         }
     }
     
@@ -88,7 +88,7 @@ public class Reservation_List extends javax.swing.JFrame {
         // 한 행씩 읽어서 한 행씩 테이블에 저장
         while((line = bufReader.readLine()) != null){
             key = line.split("/");
-            Object[] list = {key[0],key[1],key[2],key[3],key[4],key[5],key[6],key[7]};
+            Object[] list = {key[0], key[1], key[2], key[3], key[4], key[5], key[6], key[7], key[8], key[9]};
             table.addRow(list);
         }
 
@@ -207,22 +207,22 @@ public class Reservation_List extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(0, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(388, 388, 388)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(425, 425, 425)
-                        .addComponent(jLabel2)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 41, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 864, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 917, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(37, 37, 37)
+                                .addComponent(jLabel2)))
+                        .addGap(423, 423, 423))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,7 +273,7 @@ public class Reservation_List extends javax.swing.JFrame {
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(file));
             
             for(int i = 0; i < gu_list.size(); i++){
-                str = String.format("%s/%s/%s/%s/%s/%s/%s%n",gu_list.get(i).getroomN(), gu_list.get(i).getname(), gu_list.get(i).getphone(), gu_list.get(i).getuser(), gu_list.get(i).getcheckin_time(), gu_list.get(i).getcheckout_time(), gu_list.get(i).getpay());
+                str = String.format("%s/%s/%s/%s/%s/%s/%s/%s/%s/%s%n",gu_list.get(i).getroomN(), gu_list.get(i).getname(), gu_list.get(i).getphone(), gu_list.get(i).getuser(),  gu_list.get(i).checkin_day ,gu_list.get(i).getcheckin_time(),  gu_list.get(i).checkout_day ,gu_list.get(i).getcheckout_time(), gu_list.get(i).getpay(),  gu_list.get(i).checkin_status);
                 writer.write(str);
             }
             writer.close();

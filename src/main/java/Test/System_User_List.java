@@ -509,10 +509,11 @@ public class System_User_List extends javax.swing.JFrame {
         try{
             getst_list(st_list);
             for(int i = 0; i<st_list.size(); i++){
-                if(key.equals(st_list.get(i).getID()))
+                if(key.equals(st_list.get(i).getID())){
                     jTextField1.setText(st_list.get(i).getID());
                     jTextField2.setText(st_list.get(i).getPW());
                     count = 1;
+                }
             }
   
         }catch (FileNotFoundException ex) {
@@ -578,10 +579,11 @@ public class System_User_List extends javax.swing.JFrame {
         try{
             getmg_list(mg_list);
             for(int i = 0; i<mg_list.size(); i++){
-                if(key.equals(mg_list.get(i).getID()))
+                if(key.equals(mg_list.get(i).getID())){
                     jTextField1.setText(mg_list.get(i).getID());
                     jTextField2.setText(mg_list.get(i).getPW());
                     count = 2;
+                }
             }
   
         }catch (FileNotFoundException ex) {
@@ -671,6 +673,13 @@ public class System_User_List extends javax.swing.JFrame {
         jTextField1.setText("");
         jTextField2.setText("");
         
+        JOptionPane.showMessageDialog(null, "수정 완료", "Result", JOptionPane.WARNING_MESSAGE);
+        
+        // 새로고침
+        System_User_List open = new System_User_List();
+        open.setVisible(true);
+        setVisible(false);
+        
     }
     
     // 매니저 수정 버튼 클릭시
@@ -704,6 +713,13 @@ public class System_User_List extends javax.swing.JFrame {
     
         jTextField1.setText("");
         jTextField2.setText("");
+        
+        JOptionPane.showMessageDialog(null, "수정 완료", "Result", JOptionPane.WARNING_MESSAGE);
+        
+        // 새로고침
+        System_User_List open = new System_User_List();
+        open.setVisible(true);
+        setVisible(false);
         
     }
     

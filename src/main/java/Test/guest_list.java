@@ -38,16 +38,19 @@ public class guest_list {
     
     
     
-    public guest_list(String roomN, String name, String phone, String user, String checkin_time, String checkout_time, String pay){
+    public guest_list(String roomN, String name, String phone, String user, String checkin_day, String checkin_time, String checkout_day, String checkout_time, String pay, String checkin_status){
     
         this.roomN = roomN;
         this.name = name;
         this.phone = phone;
         this.user = user;
+        this.checkin_day = checkin_day; 
         this.checkin_time = checkin_time;
+        this.checkout_day = checkout_day; 
         this.checkout_time = checkout_time;
         this.pay = pay;
-
+        this.checkin_status = checkin_status;
+        
     }
     
     
@@ -71,9 +74,19 @@ public class guest_list {
         return user;
     }
     
+    // 체크인 일정 getter
+    public String getcheckin_day(){
+        return checkin_day;
+    }
+    
     // 체크인 시간 getter
     public String getcheckin_time(){
         return checkin_time;
+    }
+    
+     // 체크아웃 일정 getter
+    public String getcheckout_day(){
+        return checkout_day;
     }
     
      // 체크아웃 시간 getter
@@ -84,6 +97,11 @@ public class guest_list {
     // 결제 방법 getter
     public String getpay(){
         return pay;
+    }
+    
+    // 체크인 상태 getter
+    public String getcheckin_status(){
+        return  checkin_status;
     }
     
     
