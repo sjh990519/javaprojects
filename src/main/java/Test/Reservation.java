@@ -405,14 +405,16 @@ public class Reservation extends javax.swing.JFrame {
             String line1 = null;
             String[] k = null;
             int count = 0;
+            int count2 = 0;
 
         // 중복된 방 검사하는 메서드
         while((line1 = bufReader.readLine()) != null){
             k = line1.split("/");
 
-            if(k[0].equals(jTextField1.getText())){
+            if(k[0].equals(jTextField1.getText()) && k[4].equals(jTextField8.getText())){
                 // 같은방 있을시 카운트 한다.
                 count++;
+                count2++;
             }
         }
         
@@ -442,10 +444,11 @@ public class Reservation extends javax.swing.JFrame {
            }
 
         }
+        
 
         
         // 같은방 없을시
-        if(count == 0 && count1 == 0){
+        if(count == 0 && count1 == 0 && count2 == 0){
             FileWriter filewriter = new FileWriter(reservation_file, true);
         
                 // 파일에 저장
@@ -473,7 +476,7 @@ public class Reservation extends javax.swing.JFrame {
                 setVisible(false);
         }
         // 같은방 있을 시
-        else if(count != 0){
+        else if(count != 0 && count2 != 0){
             JOptionPane.showMessageDialog(null, "이미 예약된 방 입니다.", "Result", JOptionPane.WARNING_MESSAGE);
             // TextField 입력 후 다시 공백
             jTextField1.setText("");
@@ -501,7 +504,7 @@ public class Reservation extends javax.swing.JFrame {
             jTextField8.setText("");
             jTextField9.setText("");
         }
-        
+ 
             
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Reservation.class.getName()).log(Level.SEVERE, null, ex);
