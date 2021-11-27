@@ -52,57 +52,96 @@ public class guest_list {
         this.checkin_status = checkin_status;
         
     }
-    
-    
-    // 방 번호 getter
-    public String getroomN(){
+
+    public String getRoomN() {
         return roomN;
     }
-    
-    // 이름 getter
-    public String getname(){
+
+    public void setRoomN(String roomN) {
+        this.roomN = roomN;
+    }
+
+    public String getName() {
         return name;
     }
-    
-    // 전화번호 getter
-    public String getphone(){
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPhone() {
         return phone;
     }
-    
-    // 인원 수 getter
-    public String getuser(){
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getUser() {
         return user;
     }
-    
-    // 체크인 일정 getter
-    public String getcheckin_day(){
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getCheckin_day() {
         return checkin_day;
     }
-    
-    // 체크인 시간 getter
-    public String getcheckin_time(){
+
+    public void setCheckin_day(String checkin_day) {
+        this.checkin_day = checkin_day;
+    }
+
+    public String getCheckin_time() {
         return checkin_time;
     }
-    
-     // 체크아웃 일정 getter
-    public String getcheckout_day(){
+
+    public void setCheckin_time(String checkin_time) {
+        this.checkin_time = checkin_time;
+    }
+
+    public String getCheckout_day() {
         return checkout_day;
     }
-    
-     // 체크아웃 시간 getter
-    public String getcheckout_time(){
+
+    public void setCheckout_day(String checkout_day) {
+        this.checkout_day = checkout_day;
+    }
+
+    public String getCheckout_time() {
         return checkout_time;
     }
-    
-    // 결제 방법 getter
-    public String getpay(){
+
+    public void setCheckout_time(String checkout_time) {
+        this.checkout_time = checkout_time;
+    }
+
+    public String getPay() {
         return pay;
     }
-    
-    // 체크인 상태 getter
-    public String getcheckin_status(){
-        return  checkin_status;
+
+    public void setPay(String pay) {
+        this.pay = pay;
     }
+
+    public String getCheckin_status() {
+        return checkin_status;
+    }
+
+    public void setCheckin_status(String checkin_status) {
+        this.checkin_status = checkin_status;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
 }
