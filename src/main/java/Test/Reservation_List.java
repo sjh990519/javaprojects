@@ -30,6 +30,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Reservation_List extends javax.swing.JFrame {
     
+
     
      // 예약 정보 ArrayList 생성
     ArrayList<guest_list> gu_list = new ArrayList<guest_list>(); 
@@ -100,13 +101,25 @@ public class Reservation_List extends javax.swing.JFrame {
         }
 }
     
+    public Reservation_List(){}
+    
+    
     /**
      * Creates new form Reservation_List
      */
-    public Reservation_List(){
+    
+    int count;
+    
+    public Reservation_List(int count){
+        
+        this.count = count;
+        
+        System.out.printf("%d", count);
         
         initComponents();
         setTitle("Guesrt Reservation_List");
+        backkey key  = new backkey();
+        System.out.printf("%d", key.getCount());
         master_list();
     }
     /**
@@ -276,11 +289,23 @@ public class Reservation_List extends javax.swing.JFrame {
     
     // 메뉴 -> 뒤로가기
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+
+
         
-        manager_List p = new manager_List();
-        p.setVisible(true);
-        setVisible(false);
+        // 직원으로 들어왔을때
+        if(count == 1){
+            staff_List q = new staff_List();
+            q.setVisible(true);
+            setVisible(false);
+        }
         
+        // 메니저로 들어왔을때
+        if(count == 2){
+            manager_List p = new manager_List();
+            p.setVisible(true);
+            setVisible(false);
+        }
+
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     

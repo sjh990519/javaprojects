@@ -12,6 +12,7 @@ public class staff_List extends javax.swing.JFrame {
     public staff_List() {
         initComponents();
         setTitle("Staff Task List");
+        
     }
 
     /**
@@ -139,8 +140,7 @@ public class staff_List extends javax.swing.JFrame {
     
     // Reservation (예약)
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        
+
         Reservation p = new Reservation();
         p.setVisible(true);
         setVisible(false);
@@ -150,18 +150,24 @@ public class staff_List extends javax.swing.JFrame {
     
     // Correction (수정)
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Reservation_List p = new Reservation_List();
+        
+        Reservation_List p = new Reservation_List(1);
         p.setVisible(true);
         setVisible(false);
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     
     
     // Delete (삭제)
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Reservation_List p = new Reservation_List();
+        
+        Reservation_List p = new Reservation_List(1);
+        backkey ky  = new backkey();
+        ky.setCount(1);
         p.setVisible(true);
         setVisible(false);
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     
