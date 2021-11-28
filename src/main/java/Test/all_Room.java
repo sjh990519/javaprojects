@@ -70,6 +70,7 @@ public class all_Room extends javax.swing.JFrame {
         jTextField9 = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         jTextField14 = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -83,7 +84,7 @@ public class all_Room extends javax.swing.JFrame {
 
         jLabel2.setText("( 호텔 전체 객실관리 )");
 
-        jLabel3.setText("방 번호 : ");
+        jLabel3.setText("전화번호 : ");
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -228,6 +229,9 @@ public class all_Room extends javax.swing.JFrame {
             }
         });
 
+        jLabel19.setFont(new java.awt.Font("굴림", 1, 14)); // NOI18N
+        jLabel19.setText("<Search>");
+
         jMenu1.setText("Menu");
 
         jMenuItem1.setText("뒤로가기");
@@ -255,16 +259,6 @@ public class all_Room extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -345,6 +339,18 @@ public class all_Room extends javax.swing.JFrame {
                         .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(60, 60, 60))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel19)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -353,7 +359,9 @@ public class all_Room extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addGap(38, 38, 38)
+                .addGap(17, 17, 17)
+                .addComponent(jLabel19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -417,7 +425,7 @@ public class all_Room extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
@@ -442,7 +450,7 @@ public class all_Room extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     
-    // 방 번호 입력
+    // 전화 번호 입력
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
@@ -451,7 +459,7 @@ public class all_Room extends javax.swing.JFrame {
     // 입력값 버튼 눌려서 찾기
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     
-        String roomnum = jTextField1.getText();
+        String phonenum = jTextField1.getText();
         String user = null;
         
         // 방 defaultType 목록 텍스트 파일 생성
@@ -476,6 +484,29 @@ public class all_Room extends javax.swing.JFrame {
         //jTextField8.setText(jTextField1.getText());
         
         // 검색한 키값 찾기
+
+        // Guest_Reservation.txt 읽어와서 예약정보 출력
+        while((line = bufReader1.readLine()) != null){
+            
+            key = line.split("/");
+            Object[] list = {key[0],key[1],key[2],key[3],key[4],key[5],key[6],key[7],key[8]};
+            
+            if(list[2].equals(phonenum)){
+                
+               // Guest_Reservation.txt 읽어와서 예약목록 출력
+               jTextField8.setText((String) list[0]);
+               jTextField2.setText((String) list[1]);
+               jTextField3.setText((String) list[2]);
+               user = (String) list[3];
+               jTextField9.setText((String) list[4]);
+               jTextField6.setText((String) list[5]);
+               jTextField14.setText((String) list[6]);
+               jTextField7.setText((String) list[7]);
+               jTextField10.setText((String) list[8]);
+                        
+            }
+
+        }
         
         
         // All_Room.txt 찾기
@@ -484,12 +515,12 @@ public class all_Room extends javax.swing.JFrame {
             key = line.split("/");
             Object[] list = {key[0],key[1],key[2],key[3]};
             
-            if(list[0].equals(roomnum)){
+            if(list[0].equals(jTextField8.getText())){
                 
                 // All_Room.txt 읽어와서 방 defaultType 출력
                 jTextField8.setText((String) list[0]);
                 jTextField4.setText((String) list[1]);
-                user = (String) list[2];
+                jTextField5.setText((String) user + "/" + list[2]);
                 jTextField11.setText((String) list[3]);
                 
                         
@@ -498,30 +529,6 @@ public class all_Room extends javax.swing.JFrame {
             
         }
         
-        
-        
-        // Guest_Reservation.txt 읽어와서 예약정보 출력
-        while((line = bufReader1.readLine()) != null){
-            
-            key = line.split("/");
-            Object[] list = {key[0],key[1],key[2],key[3],key[4],key[5],key[6],key[7],key[8]};
-            
-            if(list[0].equals(roomnum)){
-                
-                // Guest_Reservation.txt 읽어와서 예약목록 출력
-               jTextField2.setText((String) list[1]);
-               jTextField3.setText((String) list[2]);
-               jTextField5.setText((String) list[3] + "/" + user);
-               jTextField9.setText((String) list[4]);
-               jTextField6.setText((String) list[5]);
-               jTextField14.setText((String) list[6]);
-               jTextField7.setText((String) list[7]);
-               jTextField10.setText((String) list[8]);
-                        
-            }
-            
-            
-        }
             
 
     }catch (FileNotFoundException ex) {
@@ -682,6 +689,7 @@ public class all_Room extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

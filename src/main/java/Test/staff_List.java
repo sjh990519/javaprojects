@@ -171,11 +171,7 @@ public class staff_List extends javax.swing.JFrame {
     
     // Food (음식)
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        
-        OrderMenu2 order = new OrderMenu2();
-        order.setVisible(true);
-        setVisible(false);
-        
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     // 메뉴 -> 뒤로가기
