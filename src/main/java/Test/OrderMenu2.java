@@ -497,7 +497,7 @@ public class OrderMenu2 extends javax.swing.JFrame {
                             BufferedWriter filewriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Bill_List, true), "UTF8"));//2파일 쓰기
                             //FileWriter filewriter = new FileWriter(Bill_List, true);
 
-                            // 파일에 저장(음식종류/음식명/ 가격/주문한 수량/총가격)
+                            // 파일에 저장(주문고객/음식종류/음식명/ 가격/주문한 수량/총가격)
                             line = String.format("%s/%s/%s/%d/%d/%d%n", name, FoodNameList[0], FoodNameList[1], Integer.parseInt(FoodNameList[2]), priceCount, sum);
                             filewriter.write(line);
                             filewriter.flush();
@@ -531,6 +531,9 @@ public class OrderMenu2 extends javax.swing.JFrame {
 // 뒤로가기
     private void jMenuItem_BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_BackActionPerformed
 
+        staff_List sf = new staff_List();
+        sf.setVisible(true);
+        setVisible(false);
 
     }//GEN-LAST:event_jMenuItem_BackActionPerformed
 // 종료하기 이벤트 처리

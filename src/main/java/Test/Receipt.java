@@ -23,8 +23,6 @@ public class Receipt extends javax.swing.JFrame {
         String line;
         String[] key;
         int count = 1;
-        
-        ordermenu o = new ordermenu();
 
         try {
             DefaultTableModel table = (DefaultTableModel) jTable_Receipt.getModel();
@@ -33,7 +31,7 @@ public class Receipt extends javax.swing.JFrame {
             BufferedReader br2 = new BufferedReader(new InputStreamReader(new FileInputStream("Bill.txt"), "UTF8"));//Bill파일읽기
             while ((line = br2.readLine()) != null) {
                 key = line.split("/");
-                Object[] list = {String.valueOf(count), key[0], key[1], key[2], key[3], key[4]};
+                Object[] list = {String.valueOf(count), key[0], key[1], key[2], key[3], key[4],key[5]};
                 table.addRow(list); // 메뉴판에 각각의 음식 행을 출력!
                 count++;
                 Allprice += Integer.parseInt(key[4]);
@@ -87,14 +85,14 @@ public class Receipt extends javax.swing.JFrame {
 
             },
             new String [] {
-                "번호", "주문고객", "음식명", "가격", "주문수량", "총 가격"
+                "번호", "주문고객", "음식종류", "음식명", "가격", "주문수량", "총 가격"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, false, false, false, true
+                false, true, true, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {

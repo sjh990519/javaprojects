@@ -894,6 +894,9 @@ public class MenuControl extends javax.swing.JFrame {
 // 뒤로가기
     private void jMenuItem_BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_BackActionPerformed
 
+        manager_List mg = new manager_List();
+        mg.setVisible(true);
+        setVisible(false);
 
     }//GEN-LAST:event_jMenuItem_BackActionPerformed
 // 종료하기 이벤트 처리

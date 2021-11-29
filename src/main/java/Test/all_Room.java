@@ -7,9 +7,11 @@ package Test;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -461,6 +463,9 @@ public class all_Room extends javax.swing.JFrame {
     
         String phonenum = jTextField1.getText();
         String user = null;
+        int roompay = 0;  // 객실 비용
+        int foodpay = 0;  // 음식 비용
+        int allpay = 0;   // 총 가격 
         
         // 방 defaultType 목록 텍스트 파일 생성
         File allRoom_list = new File("All_Room_Info.txt");
@@ -476,6 +481,7 @@ public class all_Room extends javax.swing.JFrame {
         
         BufferedReader bufReader = new BufferedReader(filereader);
         BufferedReader bufReader1 = new BufferedReader(filereader1);
+        BufferedReader br2 = new BufferedReader(new InputStreamReader(new FileInputStream("Bill.txt"), "UTF8"));//Bill파일읽기
         
         String line;
         String[] key;
@@ -503,7 +509,7 @@ public class all_Room extends javax.swing.JFrame {
                jTextField14.setText((String) list[6]);
                jTextField7.setText((String) list[7]);
                jTextField10.setText((String) list[8]);
-                        
+               
             }
 
         }
@@ -522,13 +528,31 @@ public class all_Room extends javax.swing.JFrame {
                 jTextField4.setText((String) list[1]);
                 jTextField5.setText((String) user + "/" + list[2]);
                 jTextField11.setText((String) list[3]);
-                
+                // 방 값 int로 전환
+                roompay = Integer.parseInt((String) list[3]);
                         
             }
             
             
         }
         
+        
+        // Bill.txt 찾기
+        while((line = br2.readLine()) != null){
+            key = line.split("/");
+            Object[] list = {key[0],key[1],key[2],key[3],key[4],key[5]};
+            
+            if(list[0].equals(jTextField2.getText())){
+                // Bill.txt 읽어와서 영수증 출력
+                jTextField12.setText((String) list[5]);
+                // 음식 값 int로 전환
+                foodpay = Integer.parseInt((String) list[5]);
+            }
+
+        }
+        
+        allpay = roompay + foodpay;
+        jTextField13.setText(""+allpay);
             
 
     }catch (FileNotFoundException ex) {
