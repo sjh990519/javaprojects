@@ -1,18 +1,24 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Test;
-
 
 import java.awt.Color;
 import java.awt.Font;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
 
 /**
  *
@@ -36,14 +42,11 @@ public class MenuControl extends javax.swing.JFrame {
     //ShowMenu(int index)에서 index(1~5)에따라 해당 메뉴판을 jTable에 출력함
     public void Order(String str) {
 
-        //jTextField_Amount.setText("");// 텍스트필드 공백으로 초기화
         File menu_file = new File(str);//str값에 따라 텍스트파일 생성
 
         try {
-            FileReader filereader = null;
-            filereader = new FileReader(menu_file); // menu_file파일 읽기
 
-            BufferedReader bufReader = new BufferedReader(filereader); // 버퍼읽기
+            BufferedReader filereader = new BufferedReader(new InputStreamReader(new FileInputStream(menu_file), "UTF8"));//파일읽기
 
             DefaultTableModel table = (DefaultTableModel) jTable_Menu.getModel();
             table.setNumRows(0);// 테이블 초기화
@@ -53,7 +56,7 @@ public class MenuControl extends javax.swing.JFrame {
             count = 0;// 행 길이
 
             // 한 행씩 읽어서 한 행씩 테이블에 저장
-            while ((line = bufReader.readLine()) != null) {
+            while ((line = filereader.readLine()) != null) {
                 key = line.split("/");
                 Object[] list = {key[0], key[1], key[2], key[3]};
                 str2[count] = key[1];// ex) 음식종류 -> 음료 일때 str2[count] = {"콜라", "사이다","밀키스","마운틴듀","부산우유"};
@@ -210,8 +213,9 @@ public class MenuControl extends javax.swing.JFrame {
             DefaultTableModel table = (DefaultTableModel) jTable_Menu.getModel();
             table.setNumRows(0);// 테이블 초기화
 
-            BufferedReader br = new BufferedReader(new FileReader(new File(str[FoodSortNum])));//1읽기모드
-            BufferedWriter bw = new BufferedWriter(new FileWriter(new File(str3[FoodSortNum])));//2덮어쓰기
+            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(str[FoodSortNum]), "UTF8"));//1파일읽기
+
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(str3[FoodSortNum]), "UTF8"));//2덮어쓰기
 
             //2파일에 기록하기
             while ((line = br.readLine()) != null) {
@@ -223,8 +227,8 @@ public class MenuControl extends javax.swing.JFrame {
             bw.close();
             br.close();
             //----
-            BufferedReader br2 = new BufferedReader(new FileReader(new File(str3[FoodSortNum])));//2읽기모드
-            BufferedWriter bw2 = new BufferedWriter(new FileWriter(new File(str3[FoodSortNum]), true));//2이어쓰기
+            BufferedReader br2 = new BufferedReader(new InputStreamReader(new FileInputStream(str3[FoodSortNum]), "UTF8"));//2읽기모드
+            BufferedWriter bw2 = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(str3[FoodSortNum], true), "UTF8"));//2이어쓰기
             //추가하는 음식명, 가격, 수량을 line에 넣음
             boolean isExist = false;// 음식존재한지아닌지
             while ((line = br2.readLine()) != null) {
@@ -232,7 +236,7 @@ public class MenuControl extends javax.swing.JFrame {
                 if (key[1].equals(FoodName)) {// 음식이 존재하면
                     jLabel_Msg.setText("이미있음");
                     jLabel_Msg2.setText("");
-                    jLabel_Msg2.setText("");
+                    jLabel_Msg3.setText("");
                     isExist = true;
                     break;
                 }
@@ -246,8 +250,8 @@ public class MenuControl extends javax.swing.JFrame {
             br2.close();
 
             //--
-            BufferedReader br1 = new BufferedReader(new FileReader(new File(str3[FoodSortNum])));//2읽기모드
-            BufferedWriter bw1 = new BufferedWriter(new FileWriter(new File(str[FoodSortNum])));//1덮어쓰기
+            BufferedReader br1 = new BufferedReader(new InputStreamReader(new FileInputStream(str3[FoodSortNum]), "UTF8"));//2읽기모드
+            BufferedWriter bw1 = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(str[FoodSortNum]), "UTF8"));//1덮어쓰기
             count = 0;
             //1파일에 기록하기
             while ((line = br1.readLine()) != null) {
@@ -279,8 +283,8 @@ public class MenuControl extends javax.swing.JFrame {
             DefaultTableModel table = (DefaultTableModel) jTable_Menu.getModel();
             table.setNumRows(0);// 테이블 초기화
 
-            BufferedReader br = new BufferedReader(new FileReader(new File(str[FoodSortNum])));//1읽기모드
-            BufferedWriter bw = new BufferedWriter(new FileWriter(new File(str3[FoodSortNum])));//2덮어쓰기
+            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(str[FoodSortNum]), "UTF8"));//1파일읽기
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(str3[FoodSortNum]), "UTF8"));//2덮어쓰기
 
             //2파일에 기록하기
             while ((line = br.readLine()) != null) {
@@ -307,8 +311,8 @@ public class MenuControl extends javax.swing.JFrame {
             bw.close();
             br.close();
             //----
-            BufferedReader br3 = new BufferedReader(new FileReader(new File(str3[FoodSortNum])));//2읽기모드
-            BufferedWriter bw2 = new BufferedWriter(new FileWriter(new File(str[FoodSortNum])));//1 덮어쓰기
+            BufferedReader br3 = new BufferedReader(new InputStreamReader(new FileInputStream(str3[FoodSortNum]), "UTF8"));//2읽기모드
+            BufferedWriter bw2 = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(str[FoodSortNum]), "UTF8"));//1 덮어쓰기
             count = 0;
             while ((line = br3.readLine()) != null) {
                 bw2.write(line + "\r\n");//텍스트파일에 line의 값을 쓴다.
@@ -338,8 +342,8 @@ public class MenuControl extends javax.swing.JFrame {
             DefaultTableModel table = (DefaultTableModel) jTable_Menu.getModel();
             table.setNumRows(0);// 테이블 초기화
 
-            BufferedReader br = new BufferedReader(new FileReader(new File(str[FoodSortNum])));//1읽기모드
-            BufferedWriter bw = new BufferedWriter(new FileWriter(new File(str3[FoodSortNum])));//2덮어쓰기
+            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(str[FoodSortNum]), "UTF8"));//1파일읽기
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(str3[FoodSortNum]), "UTF8"));//2덮어쓰기
             //2파일에 쓰기
             while ((line = br.readLine()) != null) {
                 key = line.split("/");
@@ -352,8 +356,8 @@ public class MenuControl extends javax.swing.JFrame {
             bw.close();
             br.close();
             //--
-            BufferedReader br3 = new BufferedReader(new FileReader(new File(str3[FoodSortNum])));//2읽기모드
-            BufferedWriter bw2 = new BufferedWriter(new FileWriter(new File(str[FoodSortNum])));//1덮어쓰기
+            BufferedReader br3 = new BufferedReader(new InputStreamReader(new FileInputStream(str3[FoodSortNum]), "UTF8"));//2읽기모드
+            BufferedWriter bw2 = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(str[FoodSortNum]), "UTF8"));//1 덮어쓰기
             count = 0;
             //1파일에 쓰기
             while ((line = br3.readLine()) != null) {
@@ -540,9 +544,9 @@ public class MenuControl extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("휴먼옛체", 0, 24)); // NOI18N
-        jLabel1.setText("Food Management");
+        jLabel1.setText("All Food_List");
 
-        jLabel2.setText("( 음식 관리 )");
+        jLabel2.setText("(음식 리스트 수정란)");
 
         jMenu3.setText("Menu");
 
@@ -572,85 +576,109 @@ public class MenuControl extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(92, Short.MAX_VALUE)
+                .addContainerGap(75, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(184, 184, 184)
+                        .addComponent(jLabel_MenuName, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(86, 86, 86)
-                                .addComponent(jLabel_MenuName, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel_FoodSort)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jComboBox_FoodSort, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel_Option)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jComboBox_Option, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel_FoodName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel_Mod, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jComboBox_FoodName, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jCheckBox_Price, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jLabel_Price, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jTextField_Price, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jCheckBox_Amount, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jLabel_Amount, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jTextField_Amount, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel_FoodN, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jTextField_FoodName, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jLabel_Msg2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel_Msg3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel_Msg, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jLabel_Option)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jComboBox_Option, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jButt_Ok, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(237, 237, 237)))))
-                        .addGap(21, 21, 21))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(419, 419, 419))))
+                                        .addComponent(jLabel_FoodSort)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jComboBox_FoodSort, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel_FoodName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jComboBox_FoodName, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(2, 2, 2)
+                                                .addComponent(jLabel_Mod, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(3, 3, 3))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel_FoodN, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jTextField_FoodName, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addComponent(jCheckBox_Amount, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel_Amount, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(jTextField_Amount, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addComponent(jCheckBox_Price, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(9, 9, 9)
+                                            .addComponent(jLabel_Price, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(jTextField_Price, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel_Msg2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel_Msg3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(10, 10, 10))
+                            .addComponent(jLabel_Msg, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(87, 87, 87)
+                        .addComponent(jButt_Ok, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 241, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(438, 438, 438)
-                .addComponent(jLabel2)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(431, 431, 431)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel2))
+                    .addComponent(jLabel1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(29, 29, 29)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
-                .addGap(48, 48, 48)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel_MenuName, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(101, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel_Msg, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel_Msg2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel_Msg3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField_Amount, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel_Amount)
+                        .addComponent(jCheckBox_Amount))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jComboBox_Option, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel_Option))
-                        .addGap(8, 8, 8)
+                        .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jComboBox_FoodSort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel_FoodSort))
@@ -660,32 +688,19 @@ public class MenuControl extends javax.swing.JFrame {
                             .addComponent(jLabel_FoodName))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel_Mod)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel_Msg2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jTextField_Amount, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel_Amount)
-                                        .addComponent(jCheckBox_Amount))
-                                    .addComponent(jLabel_Msg3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jTextField_FoodName, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel_FoodN))
-                                    .addComponent(jLabel_Msg, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextField_Price, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel_Price)
-                                    .addComponent(jCheckBox_Price))))
-                        .addGap(30, 30, 30)
-                        .addComponent(jButt_Ok, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(75, Short.MAX_VALUE))
+                        .addGap(44, 44, 44)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField_FoodName, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel_FoodN))
+                        .addGap(7, 7, 7)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField_Price, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel_Price)
+                            .addComponent(jCheckBox_Price))
+                        .addGap(42, 42, 42)))
+                .addGap(33, 33, 33)
+                .addComponent(jButt_Ok, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59))
         );
 
         pack();
@@ -856,9 +871,14 @@ public class MenuControl extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButt_OkActionPerformed
+
+
 // 뒤로가기
     private void jMenuItem_BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_BackActionPerformed
 
+        manager_List mg = new manager_List();
+        mg.setVisible(true);
+        setVisible(false);
 
     }//GEN-LAST:event_jMenuItem_BackActionPerformed
 // 종료하기 이벤트 처리

@@ -10,8 +10,12 @@ import java.awt.Font;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -47,10 +51,8 @@ public class OrderMenu2 extends javax.swing.JFrame {
         File menu_file = new File(str);//str값에 따라 텍스트파일 생성
 
         try {
-            FileReader filereader = null;
-            filereader = new FileReader(menu_file); // menu_file파일 읽기
 
-            BufferedReader bufReader = new BufferedReader(filereader); // 버퍼읽기
+            BufferedReader filereader = new BufferedReader(new InputStreamReader(new FileInputStream(menu_file), "UTF8"));//파일읽기
 
             DefaultTableModel table = (DefaultTableModel) jTable_Menu.getModel();
             table.setNumRows(0);// 테이블 초기화
@@ -60,7 +62,7 @@ public class OrderMenu2 extends javax.swing.JFrame {
             count = 0;// 행 길이
 
             // 한 행씩 읽어서 한 행씩 테이블에 저장
-            while ((line = bufReader.readLine()) != null) {
+            while ((line = filereader.readLine()) != null) {
                 key = line.split("/");
                 Object[] list = {key[0], key[1], key[2], key[3]};
                 str2[count] = key[1];// ex) 음식종류 -> 음료 일때 str2[count] = {"콜라", "사이다","밀키스","마운틴듀","부산우유"};
@@ -81,14 +83,8 @@ public class OrderMenu2 extends javax.swing.JFrame {
         File menu_file = new File(str[num]);//num에따른 텍스트배열을 불러서 생성
 
         try {
-            FileReader filereader = null;
-            filereader = new FileReader(menu_file);// menu_file파일 읽기
-            
-            BufferedReader bufReader = new BufferedReader(filereader);// 버퍼읽기
-            
-            
-            
-            BufferedWriter bw = new BufferedWriter(new FileWriter(new File(str2[num])));//num에따른 str2배열을 생성하고 텍스트 쓰기
+            BufferedReader bufReader = new BufferedReader(new InputStreamReader(new FileInputStream(menu_file), "UTF8"));//1파일읽기        
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(str2[num]), "UTF8"));//2파일 쓰기
 
             DefaultTableModel table = (DefaultTableModel) jTable_Menu.getModel();
             table.setNumRows(0);// 테이블 초기화
@@ -111,8 +107,8 @@ public class OrderMenu2 extends javax.swing.JFrame {
             bw.close();
             bufReader.close();
             //----
-            BufferedReader br2 = new BufferedReader(new FileReader(new File(str2[num])));//num에따른 str2배열의 텍스트파일을 읽기
-            BufferedWriter bw2 = new BufferedWriter(new FileWriter(new File(str[num])));//num에따른 str배열의 텍스트파일 쓰기
+            BufferedReader br2 = new BufferedReader(new InputStreamReader(new FileInputStream(str2[num]), "UTF8"));//2파일읽기        
+            BufferedWriter bw2 = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(str[num]), "UTF8"));//1파일 쓰기
 
             while ((line = br2.readLine()) != null) {
                 bw2.write(line + "\r\n");//str2의 배열의 텍스트파일 내용을 str배열의 텍스트파일에 쓰기
@@ -121,7 +117,7 @@ public class OrderMenu2 extends javax.swing.JFrame {
             bw2.close();
             br2.close();
             //--
-            BufferedReader br3 = new BufferedReader(new FileReader(new File(str[num])));//str배열의 텍스트파일 읽기
+            BufferedReader br3 = new BufferedReader(new InputStreamReader(new FileInputStream(str[num]), "UTF8"));//1파일읽기
 
             while ((line = br3.readLine()) != null) {
                 key = line.split("/");
@@ -150,10 +146,7 @@ public class OrderMenu2 extends javax.swing.JFrame {
         File bill_file = new File(str[num]);//num에따른 배열의 값의 텍스트파일을 생성
 
         try {
-            FileReader filereader = null;
-            filereader = new FileReader(bill_file);
-
-            BufferedReader bufReader = new BufferedReader(filereader);
+            BufferedReader bufReader = new BufferedReader(new InputStreamReader(new FileInputStream(bill_file), "UTF8"));//파일읽기     
 
             String line;
             // 한 행씩 읽어서 한 행씩 테이블에 저장
@@ -225,8 +218,10 @@ public class OrderMenu2 extends javax.swing.JFrame {
         jTextField_Amount.setEnabled(false);//실행시 만질수 없게함
         jTextField_Amount.setText(" 입력불가 ");//실행시 텍스트필드에 표시
         try {//처음에 Bill.txt파일 내용 삭제
-            PrintWriter writer = new PrintWriter("Bill.txt");
-            writer.print("");
+            FileOutputStream fileout = new FileOutputStream("Bill.txt");
+            String text = "";
+            fileout.write(text.getBytes());
+            fileout.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -241,6 +236,8 @@ public class OrderMenu2 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTree1 = new javax.swing.JTree();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_Menu = new javax.swing.JTable();
         jButt_Order = new javax.swing.JButton();
@@ -259,6 +256,8 @@ public class OrderMenu2 extends javax.swing.JFrame {
         jMenuItem_Back = new javax.swing.JMenuItem();
         jMenuItem_Exit = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+
+        jScrollPane2.setViewportView(jTree1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -323,9 +322,10 @@ public class OrderMenu2 extends javax.swing.JFrame {
 
         jLabel_FoodSort.setText("음식 종류");
 
-        jLabel1.setFont(new java.awt.Font("휴먼옛체", 0, 24)); // NOI18N
-        jLabel1.setText("Food Order");
+        jLabel1.setFont(new java.awt.Font("휴먼옛체", 0, 28)); // NOI18N
+        jLabel1.setText("< Food Order >");
 
+        jLabel2.setFont(new java.awt.Font("굴림", 0, 18)); // NOI18N
         jLabel2.setText("( 음식 주문 )");
 
         jMenu3.setText("Menu");
@@ -356,72 +356,78 @@ public class OrderMenu2 extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(71, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addContainerGap(59, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel_FoodSort, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel_FoodName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox_FoodName, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox_FoodSort, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(50, 50, 50))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel_Amount, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel_MenuName, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(165, 165, 165)))
+                .addGap(42, 42, 42)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(jButt_Order, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel_FoodSort, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel_FoodName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jComboBox_FoodName, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jComboBox_FoodSort, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel_Amount, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jTextField_Amount, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(96, 96, 96))
-                            .addComponent(jButt_Order, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel_Msg, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(26, 26, 26))
+                                .addGap(46, 46, 46)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel_Msg, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(42, 42, 42))
             .addGroup(layout.createSequentialGroup()
-                .addGap(260, 260, 260)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel1)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(24, 24, 24)
-                            .addComponent(jLabel2)))
+                .addGap(460, 460, 460)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel_MenuName, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)))
+                        .addGap(47, 47, 47)
+                        .addComponent(jLabel2)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(36, 36, 36)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
-                .addGap(43, 43, 43)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addComponent(jLabel_MenuName, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox_FoodSort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel_FoodSort))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox_FoodName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel_FoodName))
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField_Amount, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel_Amount))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel_Msg, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButt_Order, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(121, 121, 121))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(111, 111, 111)
+                                .addComponent(jLabel_Msg, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jComboBox_FoodSort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel_FoodSort))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jComboBox_FoodName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel_FoodName))
+                                .addGap(20, 20, 20)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jTextField_Amount, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel_Amount))
+                                .addGap(42, 42, 42)))
+                        .addComponent(jButt_Order, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(64, 64, 64))
         );
 
         pack();
@@ -459,7 +465,8 @@ public class OrderMenu2 extends javax.swing.JFrame {
                         Allprice += Integer.parseInt(FoodNameList[2]) * priceCount;// 누적가격
                         File Bill_List = new File("Bill.txt");
                         try {
-                            FileWriter filewriter = new FileWriter(Bill_List, true);
+                            BufferedWriter filewriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Bill_List, true), "UTF8"));//2파일 쓰기
+                            //FileWriter filewriter = new FileWriter(Bill_List, true);
 
                             // 파일에 저장(음식종류/음식명/ 가격/주문한 수량/총가격/ 누적비용)
                             line = String.format("%s/%s/%d/%d/%d/%d%n", FoodNameList[0], FoodNameList[1], Integer.parseInt(FoodNameList[2]), priceCount, sum, Allprice);
@@ -490,9 +497,13 @@ public class OrderMenu2 extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButt_OrderActionPerformed
+
 // 뒤로가기
     private void jMenuItem_BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_BackActionPerformed
 
+        staff_List lis = new staff_List();
+        lis.setVisible(true);
+        setVisible(false);
 
     }//GEN-LAST:event_jMenuItem_BackActionPerformed
 // 종료하기 이벤트 처리
@@ -578,7 +589,9 @@ public class OrderMenu2 extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem_Back;
     private javax.swing.JMenuItem jMenuItem_Exit;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable_Menu;
     private javax.swing.JTextField jTextField_Amount;
+    private javax.swing.JTree jTree1;
     // End of variables declaration//GEN-END:variables
 }
