@@ -431,6 +431,7 @@ public class Reservation_List extends javax.swing.JFrame {
         
         try{
             getguest_list(gu_list);
+            model.setNumRows(0);
             
             for(int i = 0; i<gu_list.size(); i++){
                 if(key.equals(gu_list.get(i).getRoomN()))
@@ -445,6 +446,26 @@ public class Reservation_List extends javax.swing.JFrame {
                 writer.write(str);
             }
             writer.close();
+            
+            
+            
+            File guest_list = new File("Guest_Reservation.txt");
+            FileReader filereader = null;
+            filereader = new FileReader(guest_list);
+        
+            BufferedReader bufReader = new BufferedReader(filereader);
+            
+            String line;
+            String[] key1;
+            
+            // 한 행씩 읽어서 한 행씩 테이블에 저장
+             while((line = bufReader.readLine()) != null){
+                key1 = line.split("/");
+                Object[] list = {key1[0], key1[1], key1[2], key1[3], key1[4], key1[5], key1[6], key1[7], key1[8], key1[9]};
+                model.addRow(list);
+            }   
+            
+            
         }catch (FileNotFoundException ex) {
             Logger.getLogger(Reservation_List.class.getName()).log(Level.SEVERE, null, ex);
         }catch (IOException ex) {
