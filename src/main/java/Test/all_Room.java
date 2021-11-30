@@ -110,6 +110,7 @@ public class all_Room extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("휴먼옛체", 0, 14)); // NOI18N
         jLabel6.setText("고객 이름 : ");
 
+        jTextField2.setEditable(false);
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
@@ -119,6 +120,7 @@ public class all_Room extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("휴먼옛체", 0, 14)); // NOI18N
         jLabel7.setText("전화번호 : ");
 
+        jTextField3.setEditable(false);
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
@@ -128,6 +130,7 @@ public class all_Room extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("휴먼옛체", 0, 14)); // NOI18N
         jLabel8.setText("객실 타입 : ");
 
+        jTextField4.setEditable(false);
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField4ActionPerformed(evt);
@@ -137,6 +140,7 @@ public class all_Room extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("휴먼옛체", 0, 14)); // NOI18N
         jLabel9.setText("  인원 수 :");
 
+        jTextField5.setEditable(false);
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField5ActionPerformed(evt);
@@ -149,6 +153,7 @@ public class all_Room extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("휴먼옛체", 0, 14)); // NOI18N
         jLabel11.setText("Check In :");
 
+        jTextField6.setEditable(false);
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField6ActionPerformed(evt);
@@ -158,6 +163,7 @@ public class all_Room extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("휴먼옛체", 0, 14)); // NOI18N
         jLabel12.setText("Check Out :");
 
+        jTextField7.setEditable(false);
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField7ActionPerformed(evt);
@@ -176,30 +182,35 @@ public class all_Room extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("휴먼옛체", 0, 14)); // NOI18N
         jLabel16.setText("총 비용 :");
 
+        jTextField10.setEditable(false);
         jTextField10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField10ActionPerformed(evt);
             }
         });
 
+        jTextField11.setEditable(false);
         jTextField11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField11ActionPerformed(evt);
             }
         });
 
+        jTextField12.setEditable(false);
         jTextField12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField12ActionPerformed(evt);
             }
         });
 
+        jTextField13.setEditable(false);
         jTextField13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField13ActionPerformed(evt);
             }
         });
 
+        jTextField8.setEditable(false);
         jTextField8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField8ActionPerformed(evt);
@@ -216,6 +227,7 @@ public class all_Room extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("휴먼옛체", 0, 14)); // NOI18N
         jLabel17.setText("체크인 일정 : ");
 
+        jTextField9.setEditable(false);
         jTextField9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField9ActionPerformed(evt);
@@ -225,6 +237,7 @@ public class all_Room extends javax.swing.JFrame {
         jLabel18.setFont(new java.awt.Font("휴먼옛체", 0, 14)); // NOI18N
         jLabel18.setText("체크아웃 일정 : ");
 
+        jTextField14.setEditable(false);
         jTextField14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField14ActionPerformed(evt);

@@ -1,10 +1,17 @@
-
-
-
 package Test;
 
+import Test.OrderMenu2;
+import Test.Reservation;
+import Test.Reservation_List;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class staff_List extends javax.swing.JFrame {
+
+    static String ip;
 
     /**
      * Creates new form Management_version
@@ -12,7 +19,7 @@ public class staff_List extends javax.swing.JFrame {
     public staff_List() {
         initComponents();
         setTitle("Staff Task List");
-        
+
     }
 
     /**
@@ -137,69 +144,84 @@ public class staff_List extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
     // Reservation (예약)
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         Reservation p = new Reservation();
         p.setVisible(true);
         setVisible(false);
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    
     // Correction (수정)
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+
         Reservation_List p = new Reservation_List(1);
         p.setVisible(true);
         setVisible(false);
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    
-    
     // Delete (삭제)
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        
+
         Reservation_List p = new Reservation_List(1);
         p.setVisible(true);
         setVisible(false);
-        
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    
     // Food (음식)
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
         OrderMenu2 order = new OrderMenu2();
         order.setVisible(true);
         setVisible(false);
-        
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     // 메뉴 -> 뒤로가기
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        
-        First_display o = new First_display();
-        o.setVisible(true);
+        staff_List c = new staff_List();
+        c.getServerIp();
+        First_Display.HotelClient = new First_Display(ip, 9999);
+        First_Display.HotelClient.setVisible(true);
         setVisible(false);
-        
+
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    
     // 메뉴 -> 종료
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        
-        System.exit(0);
-        
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-       
+        System.exit(0);
+        try {
+            First_Display.HotelClient.socket.close();
+        } catch (IOException ex) {
+            System.out.println("error");
+        }
+
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
      */
+    private String getServerIp() {
+
+        InetAddress local = null;
+        try {
+            local = InetAddress.getLocalHost();
+        } catch (UnknownHostException e) {
+            System.out.println("error");
+        }
+
+        if (local == null) {
+            return "";
+        } else {
+            ip = local.getHostAddress();
+            return ip;
+        }
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

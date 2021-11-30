@@ -1,7 +1,12 @@
-
-
 package Test;
 
+import Test.MenuControl;
+import Test.Reservation_List;
+import Test.System_User_List;
+import Test.all_Room;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 /**
  *
@@ -12,6 +17,8 @@ public class manager_List extends javax.swing.JFrame {
     /**
      * Creates new form staff_version
      */
+    static String ip;
+
     public manager_List() {
         initComponents();
         setTitle("Management Task List");
@@ -139,72 +146,86 @@ public class manager_List extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
     // All_Room Management (객실 전체 관리)
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
         all_Room p = new all_Room();
         p.setVisible(true);
         setVisible(false);
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    
     // Reservation Management (예약 전체 관리)
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+
         // 예약 전체관리 창 들어가기
         Reservation_List plist = new Reservation_List(2);
         plist.setVisible(true);
         setVisible(false);
-        
-        
+
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    
     // All_Food Management (식당 전체 관리)
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
         MenuControl control = new MenuControl();
         control.setVisible(true);
         setVisible(false);
-        
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    
-    
     // 메뉴 -> 뒤로가기
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        
-        First_display o = new First_display();
-        o.setVisible(true);
+
+        manager_List d = new manager_List();
+        d.getServerIp();
+        First_Display.HotelClient = new First_Display(ip, 9999);
+        First_Display.HotelClient.setVisible(true);
         setVisible(false);
-        
+
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    
     // 메뉴 -> 종료
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        
+
         System.exit(0);
-        
+        try {
+            First_Display.HotelClient.socket.close();
+        } catch (IOException ex) {
+            System.out.println("error");
+        }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    
     // 직원 및 매니저 관리
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        
-        System_User_List p = new System_User_List(); 
+
+        System_User_List p = new System_User_List();
         p.setVisible(true);
         setVisible(false);
-        
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    
-    
     /**
      * @param args the command line arguments
      */
+    private String getServerIp() {
+
+        InetAddress local = null;
+        try {
+            local = InetAddress.getLocalHost();
+        } catch (UnknownHostException e) {
+            System.out.println("error");
+        }
+
+        if (local == null) {
+            return "";
+        } else {
+            ip = local.getHostAddress();
+            return ip;
+        }
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
