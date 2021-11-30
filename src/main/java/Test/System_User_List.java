@@ -549,6 +549,14 @@ public class System_User_List extends javax.swing.JFrame {
                 writer.write(str);
             }
             writer.close();
+            
+             JOptionPane.showMessageDialog(null, "삭제 완료", "Result", JOptionPane.WARNING_MESSAGE);
+        
+            // 새로고침
+            System_User_List open = new System_User_List();
+            open.setVisible(true);
+            setVisible(false);
+
         }catch (FileNotFoundException ex) {
             Logger.getLogger(Reservation_List.class.getName()).log(Level.SEVERE, null, ex);
         }catch (IOException ex) {
@@ -619,6 +627,15 @@ public class System_User_List extends javax.swing.JFrame {
                 writer.write(str);
             }
             writer.close();
+            
+            
+            JOptionPane.showMessageDialog(null, "삭제 완료", "Result", JOptionPane.WARNING_MESSAGE);
+            // 새로고침
+            System_User_List open = new System_User_List();
+            open.setVisible(true);
+            setVisible(false);
+            
+          
         }catch (FileNotFoundException ex) {
             Logger.getLogger(Reservation_List.class.getName()).log(Level.SEVERE, null, ex);
         }catch (IOException ex) {
